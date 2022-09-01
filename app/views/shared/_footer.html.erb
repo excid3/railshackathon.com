@@ -1,10 +1,17 @@
-<footer class="bg-light footer mt-auto py-3">
-  <div class="container d-flex justify-content-between mx-auto text-muted">
-    <span>&copy; <%= Date.today.year %> Your Company</span>
-    <ul class="d-inline float-end list-inline mb-0">
-      <li class="list-inline-item mr-3"><%= link_to "Terms", terms_path %></li>
-      <li class="list-inline-item mr-3"><%= link_to "Privacy", privacy_path %></li>
-    </ul>
+<footer class="py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-between md:flex-row">
+    <%= link_to root_path do %>
+      <%= image_tag "logo.svg", class: "inline-block h-8" %>
+      <span class="font-bold text-2xl tracking-tighter">Rails Hackathon</span>
+    <% end %>
+
+    <p class="mt-6 text-base text-slate-500 md:mt-0">Copyright ©
+    <!-- --><%= Time.current.year %>
+      <!-- --> GoRails, LLC. All rights reserved.
+    </p>
+
+    <div>
+      <%= link_to "Terms", terms_path %>
+      <%= link_to "Privacy", privacy_path %>
   </div>
 </footer>
-
