@@ -18,7 +18,6 @@ class Service < ApplicationRecord
     super
   end
 
-
   def twitter_client
     Twitter::REST::Client.new do |config|
       config.consumer_key        = Rails.application.secrets.twitter_app_id

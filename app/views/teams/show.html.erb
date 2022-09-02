@@ -1,0 +1,42 @@
+<div class="mb-8">
+  <%= link_to "← Back to all Teams", teams_path, class: "no-underline text-sm" %>
+</div>
+
+<h1 class="mb-2"><%= @team.name %></h1>
+<div class="text-xs">
+  <svg class="inline-block h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd" />
+  </svg>
+  <%= @team.time_zone %>
+</div>
+
+<div class="mt-6">
+  <%= @team.description %>
+</div>
+
+<h4>Team Members</h4>
+<ul class="list-none pl-0">
+  <% @team.users.each do |user| %>
+    <li>
+      <div class="flex gap-2 items-center">
+        <%= image_tag gravatar_url_for(user.email), class: "h-12 w-12 rounded-full m-0" %>
+        <b><%= user.name %></b>
+
+        <% if @team.team_member?(current_user) %>
+          <%= button_to "Remove", team_user_path(@team, user), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "text-sm font-medium" %>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<% if user_signed_in? && current_user.team == @team %>
+  <div class="bg-gray-100 p-8 rounded-lg">
+    <h4 class="mt-0">Invite team members</h4>
+    <p>Share this link with your friends so they can join your team.</p>
+
+    <div class="truncate overflow-hidden">
+      <%= button_tag "Copy to clipboard", class: "btn btn-primary", data: {controller: :clipboard, clipboard_text: team_invitation_url(@team, @team.to_sgid(purpose: "invite"))} %>
+    </div>
+  </div>
+<% end %>

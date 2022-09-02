@@ -1,0 +1,38 @@
+.nav-link {
+  @apply block no-underline text-gray-500 hover:text-gray-800 px-2 py-1 text-base font-medium whitespace-nowrap rounded-md hover:bg-gray-100;
+  line-height: 30px;
+
+  &.active {
+    @apply text-blue-500 bg-blue-50 font-semibold;
+  }
+
+  &:focus {
+    @apply text-gray-900;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-link {
+    @apply inline-flex my-0 mr-3;
+  }
+}
+
+/* Highlights unread notifications with background color */
+[data-notifications-target="notification"]:not([data-read-at]) {
+  @apply bg-gray-100;
+}
+
+/* Highlights uninteracted notifications with blue dot */
+[data-notifications-target="notification"]:not([data-interacted-at]) {
+  [uninteracted] {
+    @apply block;
+  }
+}
+
+.dropdown-menu {
+  min-width: 100%;
+
+  @screen lg {
+    min-width: 200px;
+  }
+}

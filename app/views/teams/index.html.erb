@@ -1,0 +1,21 @@
+<div class="flex justify-between">
+  <h1>All Teams</h1>
+  <div>
+    <% if current_user.team %>
+      <%= link_to "My Team", team_path(current_user.team), class: 'btn btn-primary' %>
+    <% else %>
+      <%= link_to "Create a Team", new_team_path, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
+
+<% @teams.each do |team| %>
+  <%= link_to team, class: "block bg-gray-50 p-8 -mx-8 mb-8 rounded-lg hover:bg-gray-100" do %>
+    <h3 class="mt-0"><%= team.name %></h3>
+    <div class="flex -space-x-1 overflow-hidden">
+      <% team.users.each do |user| %>
+        <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

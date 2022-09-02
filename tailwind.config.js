@@ -55,8 +55,9 @@ module.exports = {
         '5xl': '2.5rem',
       },
       fontFamily: {
-        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
         display: ['DM Sans', ...defaultTheme.fontFamily.sans],
+        logo: ['Montserrat', ...defaultTheme.fontFamily.sans],
       },
       maxWidth: {
         '2xl': '40rem',

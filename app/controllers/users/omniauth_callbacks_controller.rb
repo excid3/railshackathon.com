@@ -34,6 +34,11 @@ module Users
         flash[:notice] = "Your #{kind} account was connected."
         redirect_to edit_user_registration_path
       else
+        # Redirect back to invitation
+        if request.env['omniauth.origin'].include? "/invitations/"
+          store_location_for(:user, request.env['omniauth.origin'])
+        end
+
         sign_in_and_redirect user, event: :authentication
         set_flash_message :notice, :success, kind: kind
       end
@@ -69,16 +74,16 @@ module Users
           expires_at: expires_at,
           access_token: auth.credentials.token,
           access_token_secret: auth.credentials.secret,
+          auth: auth.to_json
       }
     end
 
     def create_user
       User.create(
         email: auth.info.email,
-        #name: auth.info.name,
+        name: auth.info.name,
         password: Devise.friendly_token[0,20]
       )
     end
-
   end
 end

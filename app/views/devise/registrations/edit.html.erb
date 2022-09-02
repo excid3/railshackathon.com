@@ -15,15 +15,17 @@
 
       <div class="mb-3">
         <%= f.label :avatar, class: "form-label" %>
-        <%= f.file_field :avatar, accept:'image/*' %>
+        <div class="flex items-center gap-2">
+          <%= image_tag avatar_path(f.object), class: "h-16 w-16 rounded-full my-3" %>
+          <%= link_to "Change your Gravatar", "https://en.gravatar.com/", target: :_blank %>
+        </div>
       </div>
-
-      <%= image_tag avatar_path(f.object), class: "rounded border shadow-sm d-block mx-auto my-3" %>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div class="alert alert-warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
 
+      <!--
       <div class="mb-3">
         <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'  %>
         <p class="form-text text-muted"><small>Leave password blank if you don't want to change it</small></p>
@@ -37,6 +39,7 @@
         <%= f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: 'Current Password'  %>
         <p class="form-text text-muted"><small>We need your current password to confirm your changes</small></p>
       </div>
+      -->
 
       <div class="mb-3 d-grid">
         <%= f.submit "Save Changes", class: 'btn btn-lg btn-primary' %>

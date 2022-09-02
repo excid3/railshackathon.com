@@ -1,25 +1,39 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  get '/privacy', to: 'home#privacy'
-  get '/terms', to: 'home#terms'
-authenticate :user, lambda { |u| u.admin? } do
-  mount Sidekiq::Web => '/sidekiq'
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
 
-  namespace :madmin do
-    resources :impersonates do
-      post :impersonate, on: :member
-      post :stop_impersonating, on: :collection
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+
+    namespace :madmin do
+      resources :impersonates do
+        post :impersonate, on: :member
+        post :stop_impersonating, on: :collection
+      end
     end
   end
-end
 
   resources :notifications, only: [:index]
   resources :announcements, only: [:index]
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  root to: 'home#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :invitations
+  resources :teams do
+    resources :users, module: :teams
+    resources :invitations, module: :teams
+  end
+
+  resource :newsletter
+
+  get '/privacy', to: 'home#privacy'
+  get '/terms', to: 'home#terms'
+
+  authenticated :user do
+    root to: 'dashboard#show', as: :authenticated_root
+  end
+
+  root to: 'home#index'
 end

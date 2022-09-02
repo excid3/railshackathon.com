@@ -5,48 +5,116 @@
   </div>
 <% end %>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <div class="container mx-auto">
-    <%= link_to Rails.configuration.application_name, root_path, class: "navbar-brand" %>
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <!--
+            Icon when menu is closed.
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            Heroicon name: outline/bars-3
 
-    <div class="collapse navbar-collapse" id="navbarMain">
-      <ul class="navbar-nav me-auto mt-2 mt-md-0">
-      </ul>
+            Menu open: "hidden", Menu closed: "block"
+          -->
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <!--
+            Icon when menu is open.
 
-      <ul class="navbar-nav">
-        <li class="nav-item"><%= link_to "What's New", announcements_path, class: "nav-link #{unread_announcements(current_user)}" %></li>
+            Heroicon name: outline/x-mark
+
+            Menu open: "block", Menu closed: "hidden"
+          -->
+          <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex flex-shrink-0 items-center text-white gap-1">
+          <%= link_to root_path do %>
+            <svg class="h-8 w-auto fill-current inline-block" width="700px" height="700px" version="1.1" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g>
+              <path d="m588.86 273.59c0-132.09-107.08-239.16-239.16-239.16-132.09 0-239.16 107.07-239.16 239.16 0 0.33203 0.023437 0.66016 0.023437 0.99219l-0.023437-0.003906v106.34l0.24609 5.4922c5.2344 76.648 110.17 137.81 238.91 137.81 128.74 0 233.67-61.168 238.91-137.81l0.24609-3.625v-108.21h-0.027344c0-0.32812 0.027344-0.66016 0.027344-0.98828zm-42.582 84.867v5.8633 5.875c0 57.5-88.531 104.11-197.71 104.11-109.2 0-197.71-46.602-197.71-104.11v-5.2461-6.4922l0.003906-56.914c0-52.941 42.914-95.867 95.859-95.867h203.7c52.949 0 95.871 42.926 95.871 95.867z"/>
+              <path d="m441.89 225.88h-186.66c-48.512 0-87.836 32.637-87.836 72.91v21.129 4.9375 26.086c0 63.402 81.098 79.258 181.16 79.258 100.06 0 181.16-17.254 181.16-79.258v-26.562-4.4648-21.129c0.003906-40.27-39.332-72.906-87.828-72.906zm-225.54 113.13c-7.4922 0-13.57-6.0742-13.57-13.562 0-7.5 6.0742-13.562 13.57-13.562 7.4922 0 13.559 6.0664 13.559 13.562-0.003906 7.4844-6.0664 13.562-13.559 13.562zm50.336-23.477c-19.305 0-34.949-15.656-34.949-34.961 0-19.297 15.645-34.949 34.949-34.949s34.945 15.645 34.945 34.949c0.003907 19.305-15.641 34.961-34.945 34.961z"/>
+              </g>
+            </svg>
+            <span class="font-bold text-lg">Rails Hackathon</span>
+          <% end %>
+        </div>
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <%= nav_link_to "Dashboard", root_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Teams", teams_path, starts_with: true, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Entries", "#", active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <%= nav_link_to "Announcements", announcements_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium #{unread_announcements(current_user)}" %>
+
         <% if user_signed_in? %>
+          <!-- Profile dropdown -->
+          <div class="relative ml-3">
+            <div>
+              <button type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <span class="sr-only">Open user menu</span>
+                <%= image_tag gravatar_url_for(current_user.email), class: "h-8 w-8 rounded-full" %>
+              </button>
+            </div>
 
-          <li class="nav-item">
-            <%= link_to notifications_path, class: "nav-link" do %>
-              <span><i class="far fa-bell" aria-hidden="true"></i></span>
-            <% end %>
-          </li>
+            <!--
+              Dropdown menu, show/hide based on menu state.
 
-          <li class="nav-item dropdown">
-            <%= link_to "#", id: "navbar-dropdown", class: "nav-link dropdown-toggle", data: { target: "nav-account-dropdown", bs_toggle: "dropdown" }, aria: { haspopup: true, expanded: false } do %>
-              <%= image_tag avatar_path(current_user, size: 40), height: 20, width: 20, class: "rounded" %>
-            <% end %>
-            <div id="nav-account-dropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar-dropdown">
-              <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+            <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+              <!-- Active: "bg-gray-100", Not Active: "" -->
+              <%= link_to "Settings", edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700" %>
               <% if current_user.admin? && respond_to?(:madmin_root_path) %>
                 <div class="dropdown-divider"></div>
-                <%= link_to "Admin Area", madmin_root_path, class: "dropdown-item" %>
+                <%= link_to "Admin Area", madmin_root_path, class: "block px-4 py-2 text-sm text-gray-700" %>
               <% end %>
-              <div class="dropdown-divider"></div>
-              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "block w-full text-left px-4 py-2 text-sm text-gray-700" %>
             </div>
-          </li>
-
+          </div>
         <% else %>
-          <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
+          <%= nav_link_to "Sign up", new_user_registration_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium #{unread_announcements(current_user)}" %>
+          <%= nav_link_to "Login", new_user_session_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium #{unread_announcements(current_user)}" %>
         <% end %>
-      </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="sm:hidden" id="mobile-menu">
+    <div class="space-y-1 px-2 pt-2 pb-3">
+      <%= nav_link_to "Dashboard", root_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Teams", teams_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Entries", "#", active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+
+      <% if user_signed_in? %>
+        <% if current_user.admin? && respond_to?(:madmin_root_path) %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "Admin Area", madmin_root_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" %>
+        <% end %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" %>
+      <% else %>
+        <%= nav_link_to "Sign up", new_user_registration_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium #{unread_announcements(current_user)}" %>
+        <%= nav_link_to "Login", new_user_session_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium #{unread_announcements(current_user)}" %>
+      <% end %>
     </div>
   </div>
 </nav>

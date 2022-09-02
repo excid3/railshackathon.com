@@ -1,0 +1,16 @@
+<div class="page-header">
+  <%= link_to team_users_path, class: 'btn btn-default' do %>
+    All Team_users
+  <% end %>
+  <%= link_to edit_team_user_path(@team_user), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show team_user</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>User:</dt>
+  <dd><%= @team_user.user %></dd>
+  <dt>Team:</dt>
+  <dd><%= @team_user.team %></dd>
+</dl>

@@ -1,0 +1,165 @@
+/* Hotwire's version of data-disable-with */
+button                  .when-disabled { display: none; }
+button[disabled]        .when-disabled { display: initial; }
+button                  .when-enabled { display: initial; }
+button[disabled]        .when-enabled { display: none; }
+
+@layer components {
+  .btn {
+    @apply inline-flex text-sm font-semibold text-center px-4 py-0 rounded no-underline items-center justify-between shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+
+    height: 40px;
+    line-height: 40px;
+    transition: ease 0.3s background, ease 0.3s transform, ease 0.2s color;
+
+    &:hover,
+    &:focus {
+      @apply cursor-pointer;
+    }
+
+    &:disabled {
+      @apply opacity-75 cursor-not-allowed;
+    }
+  }
+
+  .btn-small {
+    @apply px-3 text-sm;
+
+    height: 32px;
+    line-height: 32px;
+  }
+
+  .btn-large {
+    @apply text-base px-6;
+
+    height: 48px;
+    line-height: 48px;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 text-white focus:ring-blue-500;
+
+    &:hover,
+    &:focus {
+      @apply bg-blue-500 text-white;
+    }
+
+    &.outline {
+      @apply bg-transparent outline-1 text-blue-500 shadow-none;
+
+      &:hover,
+      &:focus {
+        @apply bg-blue-500 text-white;
+      }
+    }
+  }
+
+  .btn-secondary {
+    @apply text-indigo-700 bg-indigo-100 focus:ring-indigo-500;
+
+    &:hover,
+    &:focus {
+      @apply bg-indigo-200 text-indigo-700;
+    }
+
+    &.outline {
+      @apply bg-transparent outline-1 text-indigo-600 shadow-none;
+
+      &:hover,
+      &:focus {
+        @apply bg-indigo-500 text-white;
+      }
+    }
+  }
+
+  .btn-tertiary {
+    @apply bg-gray-700 text-white focus:ring-gray-600;
+
+    &:hover,
+    &:focus {
+      @apply bg-gray-600 text-white;
+    }
+
+    &.outline {
+      @apply bg-transparent outline-1 text-gray-700 shadow-none;
+
+      &:hover,
+      &:focus {
+        @apply bg-gray-600 text-white;
+      }
+    }
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white focus:ring-red-500;
+
+    &:hover,
+    &:focus {
+      @apply bg-red-500 text-white;
+    }
+
+    &.outline {
+      @apply bg-transparent outline-1 text-red-500 shadow-none;
+
+      &:hover,
+      &:focus {
+        @apply bg-red-500 text-white;
+      }
+    }
+  }
+
+  .btn-gray {
+    @apply bg-gray-100 text-gray-800 hover:bg-gray-200 hover:text-gray-800 focus:ring-gray-600;
+  }
+
+  .btn-light-gray {
+    @apply bg-gray-100 text-gray-800 hover:bg-gray-200 hover:text-gray-800 focus:ring-gray-600;
+  }
+
+  .btn-white {
+    @apply bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-700 focus:ring-blue-500;
+
+    &.primary {
+      @apply text-blue-600;
+    }
+
+    &.secondary {
+      @apply text-green-600;
+    }
+
+    &.tertiary {
+      @apply text-gray-600;
+    }
+
+    &.gray {
+      @apply text-gray-700;
+    }
+  }
+
+  .btn-link {
+    @apply text-blue-500 bg-transparent shadow-none;
+
+    &:hover,
+    &:focus {
+      @apply text-blue-600;
+
+      transform: none;
+    }
+  }
+
+  .btn-light-blue {
+    @apply text-blue-700 bg-blue-100 focus:ring-blue-700;
+  }
+
+  .btn-light-green {
+    @apply text-green-700 bg-green-100 focus:ring-green-700;
+  }
+
+  .btn-light-red {
+    @apply text-red-700 bg-red-100 focus:ring-red-700;
+  }
+
+  .btn-expanded, .btn-block {
+    @apply block w-full;
+  }
+}

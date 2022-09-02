@@ -1,0 +1,39 @@
+<p class="alert alert-info text-center">You've been invited to join a team!</p>
+
+<h1 class="mb-2"><%= @team.name %></h1>
+<div class="text-xs">
+  <svg class="inline-block h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd" />
+  </svg>
+  <%= @team.time_zone %>
+</div>
+
+<div class="mt-6">
+  <%= @team.description %>
+</div>
+
+<h4>Team Members</h4>
+<ul class="list-none pl-0">
+  <% @team.users.each do |user| %>
+    <li>
+      <div class="flex gap-2 items-center">
+        <%= image_tag gravatar_url_for(user.email), class: "h-12 w-12 rounded-full m-0" %>
+        <%= user.name %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<% if user_signed_in? && current_user.team %>
+  <p class="alert">You're already on a team. Leave your current team to join this one.</p>
+<% elsif @team.full? %>
+  <p class="alert">This team is full, but you can find another team to join in our <%= link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank %>!</p>
+<% elsif user_signed_in?%>
+  <%= button_to "Join the team", team_invitation_url(@team, @team.to_sgid(purpose: "invite")), method: :patch, class: "btn btn-primary" %>
+<% else %>
+  <h3>Join the team</h3>
+  <%= button_to user_github_omniauth_authorize_path(origin: request.path), method: :post, class: "flex items-center gap-2 border shadow px-4 py-2 rounded-md", data: {turbo: false} do %>
+    <%= image_tag "GitHub-Mark-64px.png", class: "h-6 w-6 m-0" %>
+    Login with GitHub
+  <% end %>
+<% end %>

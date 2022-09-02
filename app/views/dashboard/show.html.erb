@@ -1,0 +1,25 @@
+<h1>Dashboard</h1>
+
+<h4>Create or join a team</h4>
+<% if current_user.team %>
+  <p>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-green-500 inline-block">
+    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+  </svg>
+  All set! Your team is <b><%= link_to current_user.team.name, current_user.team %></b>.
+  </p>
+<% else %>
+  <p>Organizing a team? <%= link_to "Create your team", new_team_path %> and invite your collaborators.</p>
+  <p>Joining a team? Wait for your team leader to invite you.</p>
+<% end%>
+
+<h4>GitHub Repositories</h4>
+<p>We will create a GitHub repository for each team to submit their entry.</p>
+<p>These repos will be kept private and you're free to continue working on your application after the Hackathon ends. We just need a way to keep track of submissions and prevent cheaters.</p>
+
+<h4>Start coding on September 17th</h4>
+<p>Once it's
+
+<h4>Push updates and deploy regularly</h4>
+
+<h4>Submit your entry on September 18th</h4
