@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html class="h-100">
+<html class="h-full">
   <head>
     <%= render 'shared/head' %>
   </head>
 
-  <body class="d-flex flex-column h-100">
-    <%= yield %>
+  <body class="flex flex-col h-full">
+    <main class="grow">
+      <%= render 'shared/notices' %>
+      <%= yield %>
+    </main>
 
     <%= render 'shared/footer' %>
   </body>
 </html>
-
