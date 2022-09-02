@@ -1,10 +1,10 @@
 class Teams::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_team_user
 
   # DELETE /team_users/1 or /team_users/1.json
   def destroy
     @team_user.destroy
-
     redirect_to team_users_url, notice: "Team member has been removed."
   end
 
