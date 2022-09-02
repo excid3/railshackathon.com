@@ -195,10 +195,16 @@
         <h2 class="mx-auto max-w-2xl text-center font-display text-4xl font-medium tracking-tighter text-blue-900 sm:text-5xl">Thanks to our sponsors ❤️</h2>
         <div class="mx-auto mt-20 grid max-w-max grid-cols-1 place-content-center gap-y-12 gap-x-32 sm:grid-cols-3 md:gap-x-16 lg:gap-x-32">
           <div class="flex items-center justify-center">
-            <%= image_tag "gorails.svg", class: "grayscale" %>
+            <%= link_to image_tag("sponsors/gorails.svg", class: "h-8"), "https://gorails.com", target: :_blank %>
           </div>
           <div class="flex items-center justify-center">
-            <%= image_tag "tuple.svg", class: "grayscale" %>
+            <%= link_to image_tag("sponsors/jumpstart.svg", class: "h-10"), "https://jumpstartrails.com", target: :_blank %>
+          </div>
+          <div class="flex items-center justify-center">
+            <%= link_to image_tag("sponsors/hatchbox.svg", class: "h-10"), "https://hatchbox.io", target: :_blank %>
+          </div>
+          <div class="flex items-center justify-center">
+            <%= link_to image_tag("sponsors/tuple.svg", class: "h-16"), "https://tuple.app", target: :_blank %>
           </div>
         </div>
       </div>
