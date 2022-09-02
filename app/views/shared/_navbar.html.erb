@@ -61,9 +61,9 @@
 
         <% if user_signed_in? %>
           <!-- Profile dropdown -->
-          <div class="relative ml-3">
+          <div class="relative ml-3" data-controller="dropdown">
             <div>
-              <button type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+              <button data-action="click->dropdown#toggle click@window->dropdown#hide" type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                 <span class="sr-only">Open user menu</span>
                 <%= image_tag gravatar_url_for(current_user.email), class: "h-8 w-8 rounded-full" %>
               </button>
@@ -79,7 +79,7 @@
                 From: "transform opacity-100 scale-100"
                 To: "transform opacity-0 scale-95"
             -->
-            <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+            <div data-dropdown-target="menu" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <%= link_to "Settings", edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700" %>
               <% if current_user.admin? && respond_to?(:madmin_root_path) %>

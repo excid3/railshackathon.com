@@ -1,25 +1,46 @@
-<h1>Dashboard</h1>
+<div class="alert">
+  🚀 Starts in
+  <%= link_to "https://everytimezone.com/s/c64db7ce", target: :_blank do %>
+    <span data-controller="countdown" data-countdown-date-value="2022-09-17T00:00:00.000-0000"></span>
+  <% end %>
+</div>
 
-<h4>Create or join a team</h4>
+<h2>Create or join a team</h2>
 <% if current_user.team %>
   <p>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-green-500 inline-block">
-    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
-  </svg>
-  All set! Your team is <b><%= link_to current_user.team.name, current_user.team %></b>.
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-green-500 inline-block">
+      <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+    </svg>
+    All set! Your team is <b><%= link_to current_user.team.name, current_user.team %></b>.
   </p>
+
+  <h4>GitHub Repositories</h4>
+  <p>We will create a GitHub repository for your team to submit your entry. You'll get access to this on September 17th.</p>
+  <p class="bg-gray-100 p-4 rounded-lg text-gray-900 text-sm">Repos will be kept private and you're free to continue working on your application after the Hackathon ends. We just need a way to keep track of submissions and prevent cheaters.</p>
+
 <% else %>
-  <p>Organizing a team? <%= link_to "Create your team", new_team_path %> and invite your collaborators.</p>
+  <p>Organizing a team? <%= link_to "Create your team", new_team_path %> and invite your collaborators. Teams can be 1-4 people. </p>
   <p>Joining a team? Wait for your team leader to invite you.</p>
 <% end%>
 
-<h4>GitHub Repositories</h4>
-<p>We will create a GitHub repository for each team to submit their entry.</p>
-<p>These repos will be kept private and you're free to continue working on your application after the Hackathon ends. We just need a way to keep track of submissions and prevent cheaters.</p>
+<hr />
 
-<h4>Start coding on September 17th</h4>
-<p>Once it's
+<h2>What's next?</h2>
+
+<h4>Start planning!</h4>
+<p>You can't code ahead of time, but you can do as much planning as you want. Figure out what you want to build, how you plan to do it, and get prepared. Feel free to build paper mockups of the UI, database entity diagrams, etc, but no digital assets until the hackathon starts.</p>
+<p>Remember, this is a Rails Hackathon with the theme of <b>Hotwire</b> this year. Your application should:</p>
+<ul>
+  <li>Use Ruby on Rails</li>
+  <li>Use Hotwire to do something cool / interesting / creative</li>
+</ul>
+
+<h4>September 17th - It begins!</h4>
+<p>Start hacking! We'll give you access to a GitHub repo to push your code at the beginning of September 17th. Keep an eye out for a GitHub email invite!</p>
 
 <h4>Push updates and deploy regularly</h4>
+<p>We want to see your progress! Push your code to the GitHub repo and deploy your application often. Your live application will be used by other participants and as part of judging, so make sure it works!</p>
+<p>Where should you deploy your app? Anywhere you like.<br/>We recommend <%= link_to "Render", "https://render.com", target: :_blank %>, <%= link_to "Fly.io", "https://fly.io", target: :_blank %>, <%= link_to "Heroku", "https://heroku.com", target: :_blank %>, or a VPS like <%= link_to "DigitalOcean", "https://m.do.co/c/87fcb9dab7a3", target: :_blank %>, <%= link_to "Vultr", "https://www.vultr.com/?ref=7302215", target: :_blank %>, or other hosting providers.</p>
 
-<h4>Submit your entry on September 18th</h4
+<h4>Submit your entry on September 18th</h4>
+<p>Finish up your app, push it to GitHub, and make your final deploy. We will look at the GitHub repo and deployed app to judge your entry. Don't continue working on your app or you will be disqualified. We want this to be fair and fun for everyone!</p>

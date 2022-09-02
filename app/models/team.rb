@@ -10,9 +10,10 @@ class Team < ApplicationRecord
   validates :time_zone, presence: true
 
   def find_or_create_repository
+    repo_name = Rails.env.dev? ? "dev-#{repo_name}" : "team-#{id}"
     client = Octokit::Client.new(access_token: Github.new.access_token)
-    client.create_repository("team-#{id}", organization: "rails-hackathon", private: true)
-    update(github_repo: "rails-hackathon/team-#{id}")
+    client.create_repository(repo_name, organization: "rails-hackathon", private: true)
+    update(github_repo: "rails-hackathon/#{repo_name}")
   rescue
   end
 
