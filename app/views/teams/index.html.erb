@@ -1,12 +1,14 @@
 <div class="flex justify-between">
   <h1>All Teams</h1>
-  <div>
-    <% if current_user.team %>
-      <%= link_to "My Team", team_path(current_user.team), class: 'btn btn-primary' %>
-    <% else %>
-      <%= link_to "Create a Team", new_team_path, class: 'btn btn-primary' %>
-    <% end %>
-  </div>
+  <% if user_signed_in? %>
+    <div>
+      <% if current_user.team %>
+        <%= link_to "My Team", team_path(current_user.team), class: 'btn btn-primary' %>
+      <% else %>
+        <%= link_to "Create a Team", new_team_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <% @teams.each do |team| %>
