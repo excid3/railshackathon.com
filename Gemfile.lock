@@ -132,6 +132,7 @@ GEM
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
+    honeybadger (4.12.2)
     http (5.1.0)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
@@ -360,6 +361,7 @@ DEPENDENCIES
   debug
   devise (~> 4.8, >= 4.8.0)
   friendly_id (~> 5.4)
+  honeybadger (~> 4.12)
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
