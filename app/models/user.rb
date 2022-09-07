@@ -11,4 +11,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_person_name
   has_noticed_notifications
+
+  validates :name, presence: true
+  validates :email, presence: true, format: { with: Devise.email_regexp }
 end
