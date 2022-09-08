@@ -13,5 +13,4 @@ class User < ApplicationRecord
   has_noticed_notifications
 
   validates :name, presence: true
-  validates :email, presence: true, format: { with: Devise.email_regexp }
 end
