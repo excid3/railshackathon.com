@@ -52,7 +52,7 @@
             <%= nav_link_to "Dashboard", root_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%= nav_link_to "Teams", teams_path, starts_with: true, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%#= nav_link_to "Entries", "#", active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%#= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@
       <%= nav_link_to "Dashboard", root_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
       <%= nav_link_to "Teams", teams_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
       <%#= nav_link_to "Entries", "#", active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-      <%= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+      <%#= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
 
       <% if user_signed_in? %>
         <% if current_user.admin? && respond_to?(:madmin_root_path) %>
