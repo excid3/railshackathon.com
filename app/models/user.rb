@@ -13,4 +13,8 @@ class User < ApplicationRecord
   has_noticed_notifications
 
   validates :name, presence: true
+
+  def github
+    services.github.first&.username
+  end
 end

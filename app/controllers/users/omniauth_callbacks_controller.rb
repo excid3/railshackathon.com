@@ -57,10 +57,8 @@ module Users
         @user = current_user
       elsif service.present?
         @user = service.user
-      elsif User.where(email: auth.info.email).any?
-        # 5. User is logged out and they login to a new account which doesn't match their old one
-        flash[:alert] = "An account with this email already exists. Please sign in with that account before connecting your #{auth.provider.titleize} account."
-        redirect_to new_user_session_path
+      elsif user = User.find_by(email: auth.info.email)
+        @user = user
       else
         @user = create_user
       end
@@ -74,7 +72,7 @@ module Users
           expires_at: expires_at,
           access_token: auth.credentials.token,
           access_token_secret: auth.credentials.secret,
-          auth: auth.to_json
+          auth: auth.to_hash
       }
     end
 

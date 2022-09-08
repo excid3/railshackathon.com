@@ -28,4 +28,8 @@ class Service < ApplicationRecord
   end
 
   def twitter_refresh_token!(token); end
+
+  def username
+    auth.dig("info", "nickname")
+  end
 end
