@@ -9,8 +9,10 @@
       <%= render 'shared/navbar' %>
       <%= render 'shared/notices' %>
 
-      <div class="container mt-4 mx-auto prose">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
+        <div class="prose max-w-none">
         <%= yield %>
+        </div>
       </div>
     </main>
 
