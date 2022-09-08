@@ -5,7 +5,7 @@ class Teams::UsersController < ApplicationController
   # DELETE /team_users/1 or /team_users/1.json
   def destroy
     @team_user.destroy
-    redirect_to team_users_url, notice: "Team member has been removed."
+    redirect_to team_users_url, notice: "Team member has been removed.", status: :see_other
   end
 
   private

@@ -12,6 +12,6 @@ class TeamUser < ApplicationRecord
   end
 
   def cleanup_team
-    team_destroy if team.team_users.size.zero?
+    team.destroy if team.team_users.size.zero?
   end
 end
