@@ -20,7 +20,7 @@
     <li>
       <div class="flex gap-2 items-center">
         <%= image_tag gravatar_url_for(user.email), class: "h-12 w-12 rounded-full m-0" %>
-        <b><%= user.name %></b>
+        <b><%= link_to_if user.github, user.name, "https://github.com/#{user.github}" %></b>
 
         <% if @team.team_member?(current_user) %>
           <%= button_to "Remove", team_user_path(@team, user), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "text-sm font-medium" %>
