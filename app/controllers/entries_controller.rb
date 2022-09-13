@@ -20,8 +20,7 @@ class EntriesController < ApplicationController
   end
 
   def create
-    @entry = Entry.new(entry_params)
-    @entry.team = current_user.team
+    @entry = current_user.team.build_entry(entry_params)
 
     respond_to do |format|
       if @entry.save
@@ -48,14 +47,9 @@ class EntriesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if current_user.team == @entry.team
-        @entry.destroy
-        format.html { redirect_to entries_url, notice: "Entry was successfully destroyed." }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to entries_url, notice: "You are not authorized to perform that action." }
-        format.json { head :unauthorized }
-      end
+      @entry.destroy
+      format.html { redirect_to entries_url, notice: "Entry was successfully destroyed." }
+      format.json { head :no_content }
     end
   end
 

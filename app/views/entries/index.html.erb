@@ -2,7 +2,7 @@
   <h1><%= pluralize @entries.count, "Entry" %></h1>
   <% if user_signed_in? %>
     <div>
-      <% if current_user.team.entry %>
+      <% if current_user.team&.entry %>
         <%= link_to "My Entry", entry_path(current_user.team.entry), class: 'btn btn-primary' %>
       <% else %>
         <%= link_to "Add an Entry", new_entry_path, class: 'btn btn-primary' %>
