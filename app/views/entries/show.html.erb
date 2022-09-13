@@ -1,0 +1,37 @@
+<div class="mb-8">
+  <%= link_to "← Back to all Entries", entries_path, class: "no-underline text-sm" %>
+</div>
+
+<h1 class="mb-2"><%= @entry.title %></h1>
+
+<div class="mt-6">
+  <%= link_to "View live application", @entry.website_url %>
+</div>
+
+<div class="mt-6">
+  <%= link_to "View on github", @entry.github_url %>
+</div>
+
+<h4>Description:</h4>
+<div class="mt-6">
+  <%= @entry.description %>
+</div>
+
+<h4>Built with:</h4>
+<div class="mt-6">
+  <%= @entry.built_with %>
+</div>
+
+<% if @entry.screenshots.attached? %>
+  <h4>Application Screenshots</h4>
+  <% @entry.screenshots.each do |screenshot| %>
+    <%= image_tag(screenshot.variant(resize_to_limit: [500, 500])) %>
+  <% end %>
+<% end %>
+
+<% if @entry.team.team_member?(current_user) %>
+  <div class="flex space-x-8 mt-6">
+    <%= link_to "Edit Entry", edit_entry_path(current_user.team.entry), class: 'btn btn-primary' %>
+    <%= button_to "Delete", @entry, method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn bg-red-500 text-white hover:bg-red-400 text-sm font-medium" %>
+  </div>
+<% end %>
