@@ -1,0 +1,59 @@
+<%= form_with(model: entry) do |form| %>
+  <% if entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :website_url, class: 'form-label' %>
+    <%= form.text_field :website_url, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :github_url, class: 'form-label' %>
+    <%= form.text_field :github_url, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.rich_text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :built_with, class: 'form-label' %>
+    <%= form.rich_text_area :built_with, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :screenshots, class: 'form-label' %>
+    <%= form.file_field :screenshots, multiple: true, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <% if entry.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', entry, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if entry.persisted? %>
+      <%= link_to "Cancel", entry, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", entries_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
