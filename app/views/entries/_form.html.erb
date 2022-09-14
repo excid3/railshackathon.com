@@ -4,17 +4,12 @@
       <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
 
       <ul>
-      <% entry.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% entry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="mb-3 flex">
-    <%= form.check_box :complete, class: 'form-label' %>
-    <%= form.label :complete, "Complete", class: 'form-label ml-2' %>
-  </div>
 
   <div class="mb-3">
     <%= form.label :title, class: 'form-label' %>
@@ -46,19 +41,26 @@
     <%= form.file_field :screenshots, multiple: true, class: 'form-control' %>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 flex">
+    <%= form.check_box :complete, class: 'form-label' %>
+    <%= form.label :complete, "Complete", class: 'form-label ml-2' %>
+  </div>
+
+  <div class="mb-3 flex justify-between">
+    <div>
+      <%= form.submit class: 'btn btn-primary' %>
+
+      <% if entry.persisted? %>
+        <%= link_to "Cancel", entry, class: "btn btn-link" %>
+      <% else %>
+        <%= link_to "Cancel", entries_path, class: "btn btn-link" %>
+      <% end %>
+    </div>
+
     <% if entry.persisted? %>
       <div class="float-end">
-        <%= link_to 'Destroy', entry, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Destroy', entry, method: :delete, class: "text-danger btn bg-red-500 text-white hover:bg-red-400 text-sm font-medium", data: { confirm: 'Are you sure?' } %>
       </div>
-    <% end %>
-
-    <%= form.submit class: 'btn btn-primary' %>
-
-    <% if entry.persisted? %>
-      <%= link_to "Cancel", entry, class: "btn btn-link" %>
-    <% else %>
-      <%= link_to "Cancel", entries_path, class: "btn btn-link" %>
     <% end %>
   </div>
 <% end %>

@@ -42,6 +42,5 @@
 <% if @entry.team.team_member?(current_user) %>
   <div class="flex space-x-8 mt-6">
     <%= link_to "Edit Entry", edit_entry_path(current_user.team.entry), class: 'btn btn-primary' %>
-    <%= button_to "Delete", @entry, method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn bg-red-500 text-white hover:bg-red-400 text-sm font-medium" %>
   </div>
 <% end %>
