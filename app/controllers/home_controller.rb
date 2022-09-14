@@ -9,4 +9,8 @@ class HomeController < ApplicationController
   def privacy
     render layout: "application"
   end
+
+  def rules
+    render layout: "application"
+  end
 end
