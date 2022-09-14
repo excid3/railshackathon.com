@@ -2,7 +2,17 @@
   <%= link_to "← Back to all Entries", entries_path, class: "no-underline text-sm" %>
 </div>
 
-<h1 class="mb-2"><%= @entry.title %></h1>
+<h1 class="mb-4"><%= @entry.title %></h1>
+
+<% if @entry.complete? %>
+  <span class="p-2 rounded-md bg-green-200">
+    Complete
+  </span>
+<% else %>
+  <span class="p-2 rounded-md bg-yellow-200">
+    Incomplete
+  </span>
+<% end %>
 
 <div class="mt-6">
   <%= link_to "View live application", @entry.website_url %>
@@ -32,6 +42,5 @@
 <% if @entry.team.team_member?(current_user) %>
   <div class="flex space-x-8 mt-6">
     <%= link_to "Edit Entry", edit_entry_path(current_user.team.entry), class: 'btn btn-primary' %>
-    <%= button_to "Delete", @entry, method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn bg-red-500 text-white hover:bg-red-400 text-sm font-medium" %>
   </div>
 <% end %>
