@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+  <div class="mb-3 flex">
+    <%= form.check_box :complete, class: 'form-label' %>
+    <%= form.label :complete, "Complete", class: 'form-label ml-2' %>
+  </div>
+
   <div class="mb-3">
     <%= form.label :title, class: 'form-label' %>
     <%= form.text_field :title, class: 'form-control' %>

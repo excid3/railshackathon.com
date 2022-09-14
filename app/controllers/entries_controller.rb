@@ -56,7 +56,7 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:title, :website_url, :github_url, :description, :built_with, screenshots: [])
+    params.require(:entry).permit(:title, :website_url, :github_url, :description, :built_with, :complete, screenshots: [])
   end
 
   def set_entry
