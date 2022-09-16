@@ -1,0 +1,25 @@
+<h1>Resources</h1>
+
+<h2>Need help? Ask in Discord</h2>
+<p>You'll be working alongside lots of other Ruby on Rails developers during the Rails Hackathon. If you need help with anything, just hop in the Discord and let us know what you need help with!</p>
+<%= link_to "Join Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, class: "btn btn-primary" %>
+
+<h2>Stimulus Documentation</h2>
+<p>Stimulus is a Javascript framework for the HTML you have. It allows you to neatly organize Javascript behavior and is compatible with Turbo out of the box.</p>
+<%= link_to "View Stimulus Docs", "https://stimulus.hotwired.dev/", target: :_blank, class: "btn btn-white" %>
+
+<h2>Turbo Documentation</h2>
+<p>Turbo Drive, Frames, Streams, and Native lets you build SPA-like applications without having to write any Javascript.</p>
+<%= link_to "View Turbo Docs", "https://turbo.hotwired.dev/", target: :_blank, class: "btn btn-white" %>
+
+<h2>Turbo 7.2.0-rc.2</h2>
+<p>If you'd like to try out the <%= link_to "new Turbo 7.2 rc2 release", "https://github.com/hotwired/turbo/releases", target: :_blank %>, you can take advantage of custom StreamActions and more.</p>
+
+<h4>Using with importmap-rails</h4>
+<p>Update your <code>config/importmap.rb</code> file to use the following pins:</p>
+<pre><code>pin "@hotwired/turbo-rails", to: "https://ga.jspm.io/npm:@hotwired/turbo-rails@7.2.0-rc.2/app/javascript/turbo/index.js"
+pin "@hotwired/turbo", to: "https://ga.jspm.io/npm:@hotwired/turbo@7.2.0-rc.2/dist/turbo.es2017-esm.js"</code></pre>
+
+<h4>Using with esbuild, webpack, etc</h4>
+<p>Update your <code>package.json</code> to use the following package version. Then yarn install.</p>
+<pre><code>"@hotwired/turbo-rails": "7.2.0-rc.2"</code></pre>
