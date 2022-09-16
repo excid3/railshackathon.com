@@ -8,6 +8,9 @@ class Vote < ApplicationRecord
 
   MAXIMUM = 5
 
+  after_commit :update_entry_total_point
+
+
   def user_can_have_only_five_votes
     # Using size here will count the in-memory instances plus the db records
     # If you have 5 vote records in the database and try to create a 6th record
