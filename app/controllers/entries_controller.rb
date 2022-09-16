@@ -1,6 +1,7 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!, only: %i[ new create edit update destroy ]
   before_action :set_entry, only: %i[ edit update destroy ]
+  before_action :ensure_only_one_entry, only: %i[ new create ]
 
   def index
     @entries = Entry.all
@@ -62,5 +63,9 @@ class EntriesController < ApplicationController
   def set_entry
     @entry = current_user.team.entry
     redirect_to entries_path, alert: "Please create an entry first." unless @entry
+  end
+
+  def ensure_only_one_entry
+    redirect_to entry_path(current_user.team.entry) if current_user.team.entry
   end
 end
