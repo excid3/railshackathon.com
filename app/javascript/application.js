@@ -14,3 +14,4 @@ import './channels/**/*_channel.js'
 import "./controllers"
 import "trix"
 import "@rails/actiontext"
+import "./src/confirm.js"

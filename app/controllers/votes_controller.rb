@@ -1,6 +1,6 @@
 class VotesController < ApplicationController
-  before_action :authenticate_user!, only: %i[ create destroy ]
-  before_action :set_entry, only: %i[ create destroy ]
+  before_action :authenticate_user!
+  before_action :set_entry, only: %i[ create ]
 
   def index
     @votes = current_user.votes.order(:position)
@@ -16,9 +16,9 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    vote = current_user.votes.find_by(entry_id: @entry.id)
-    vote.destroy if vote
-    redirect_to @entry, notice: "Your vote has been removed successfully."
+    vote = current_user.votes.find(params[:id])
+    vote.destroy
+    redirect_back fallback_location: entry_path(vote.entry), notice: "Your vote has been removed successfully."
   end
 
   def set_entry
