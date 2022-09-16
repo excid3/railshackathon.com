@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
   get '/rules', to: 'home#rules'
+  get '/resources', to: "home#resources"
 
   authenticated :user do
     root to: 'dashboard#show', as: :authenticated_root

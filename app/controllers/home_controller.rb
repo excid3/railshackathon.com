@@ -1,16 +1,18 @@
 class HomeController < ApplicationController
+  layout "application", except: [:index]
+
   def index
   end
 
   def terms
-    render layout: "application"
   end
 
   def privacy
-    render layout: "application"
   end
 
   def rules
-    render layout: "application"
+  end
+
+  def resources
   end
 end
