@@ -22,6 +22,13 @@
         <%= image_tag(screenshot.variant(resize_to_limit: [500, 500])) %>
       <% end %>
     <% end %>
+    <div class="mt-6">
+      <%= link_to "View live application", @entry.website_url, target: "_blank" %>
+    </div>
+
+    <div class="mt-6">
+      <%= link_to "View on github", @entry.github_url, target: "_blank" %>
+    </div>
 
     <div class="flex space-x-8 mt-6">
       <% if @entry.team.team_member?(current_user) %>
