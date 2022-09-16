@@ -1,6 +1,10 @@
 class VotesController < ApplicationController
   before_action :authenticate_user!, only: %i[ create destroy ]
-  before_action :set_entry
+  before_action :set_entry, only: %i[ create destroy ]
+
+  def index
+    @votes = current_user.votes.order(:position)
+  end
 
   def create
     vote = current_user.votes.build(entry: @entry)

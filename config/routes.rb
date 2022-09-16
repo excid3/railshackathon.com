@@ -1,7 +1,15 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :votes, only: [:create, :destroy]
+  resources :votes, only: [:index, :create, :destroy] do
+    resource :move, only: [], module: :votes do
+      collection do
+        patch "up"
+        patch "down"
+      end
+    end
+  end
+ 
   resources :entries
   devise_for :users, controllers: {
     registrations: "users/registrations",
