@@ -14,7 +14,7 @@ class EntriesController < ApplicationController
   end
 
   def new
-    @entry = Entry.new
+    @entry = current_user.team.build_entry
   end
 
   def edit
@@ -57,7 +57,7 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:title, :website_url, :github_url, :description, :built_with, :complete, screenshots: [])
+    params.require(:entry).permit(:title, :website_url, :description, :built_with, :complete, screenshots: [])
   end
 
   def set_entry

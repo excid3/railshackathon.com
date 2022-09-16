@@ -1,4 +1,4 @@
-<div class="grid grid-cols-4 gap-4">
+<div class="grid md:grid-cols-4 gap-4">
   <div class="col-span-3">
     <div class="mb-8">
       <%= link_to "← Back to all Entries", entries_path, class: "no-underline text-sm" %>
@@ -32,22 +32,24 @@
 
   <div class="col-span-1">
     <% if @entry.complete? %>
-      <span class="p-2 rounded-md bg-green-200">
+      <span class="p-2 rounded-md bg-green-200 text-green-900 text-sm font-medium">
         Complete
       </span>
     <% else %>
-      <span class="p-2 rounded-md bg-yellow-200">
+      <span class="p-2 rounded-md bg-yellow-200 text-yellow-900 text-sm font-medium">
         Incomplete
       </span>
     <% end %>
 
     <div class="mt-6">
-      <%= link_to "View live application", @entry.website_url, target: "_blank" %>
+      <%= link_to "View Application", @entry.website_url, target: "_blank", class: "btn btn-white" %>
     </div>
 
-    <div class="mt-6">
-      <%= link_to "View on github", @entry.github_url, target: "_blank" %>
-    </div>
+    <% if current_user.admin? || current_user.team.entry == @entry %>
+      <div class="mt-6">
+        <%= link_to "View on GitHub", @entry.github_url, target: "_blank", class: "btn btn-white" %>
+      </div>
+    <% end %>
 
     <hr/>
 
