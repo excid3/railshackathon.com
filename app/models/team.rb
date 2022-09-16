@@ -11,14 +11,20 @@ class Team < ApplicationRecord
   validates :time_zone, presence: true
 
   def find_or_create_repository
-    repo_name = Rails.env.dev? ? "dev-#{repo_name}" : "team-#{id}"
+    repo_name = Rails.env.development? ? "dev-#{repo_name}" : "team-#{id}"
     client = Octokit::Client.new(access_token: Github.new.access_token)
     client.create_repository(repo_name, organization: "rails-hackathon", private: true)
     update(github_repo: "rails-hackathon/#{repo_name}")
   rescue
   end
 
-  def add_collaborator(username)
+  def add_all_collaborators
+    users.joins(:services).each do |user|
+      add_github_collaborator(user.github)
+    end
+  end
+
+  def add_github_collaborator(username)
     client = Octokit::Client.new(access_token: Github.new.access_token)
     client.add_collaborator(github_repo, username, permission: :maintain)
   end
