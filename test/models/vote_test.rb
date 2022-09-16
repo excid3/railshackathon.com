@@ -16,4 +16,11 @@ class VoteTest < ActiveSupport::TestCase
     vote.position = 100
     assert vote.valid?
   end
+
+  test "user can't vote for the same entry multiple times" do
+    assert_raises do
+      users(:two).votes.create!(entry: entries(:one))
+      users(:two).votes.create!(entry: entries(:one))
+    end
+  end
 end

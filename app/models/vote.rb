@@ -4,6 +4,7 @@ class Vote < ApplicationRecord
 
   acts_as_list scope: :user
 
+  validates :entry_id, uniqueness: {scope: :user_id}
   validate :user_can_have_only_five_votes
 
   MAXIMUM = 5
