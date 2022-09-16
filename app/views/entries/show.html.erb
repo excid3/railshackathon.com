@@ -1,52 +1,60 @@
-<div class="mb-8">
-  <%= link_to "← Back to all Entries", entries_path, class: "no-underline text-sm" %>
-</div>
+<div class="grid grid-cols-4 gap-4">
+  <div class="col-span-3">
+    <div class="mb-8">
+      <%= link_to "← Back to all Entries", entries_path, class: "no-underline text-sm" %>
+    </div>
 
-<h1 class="mb-4"><%= @entry.title %></h1>
+    <h1 class="mb-4"><%= @entry.title %></h1>
 
-<% if @entry.complete? %>
-  <span class="p-2 rounded-md bg-green-200">
-    Complete
-  </span>
-<% else %>
-  <span class="p-2 rounded-md bg-yellow-200">
-    Incomplete
-  </span>
-<% end %>
+    <h4>Description:</h4>
+    <div class="mt-6">
+      <%= @entry.description %>
+    </div>
 
-<div class="mt-6">
-  <%= link_to "View live application", @entry.website_url %>
-</div>
+    <h4>Built with:</h4>
+    <div class="mt-6">
+      <%= @entry.built_with %>
+    </div>
 
-<div class="mt-6">
-  <%= link_to "View on github", @entry.github_url %>
-</div>
+    <% if @entry.screenshots.attached? %>
+      <h4>Application Screenshots</h4>
+      <% @entry.screenshots.each do |screenshot| %>
+        <%= image_tag(screenshot.variant(resize_to_limit: [500, 500])) %>
+      <% end %>
+    <% end %>
 
-<h4>Description:</h4>
-<div class="mt-6">
-  <%= @entry.description %>
-</div>
+    <div class="flex space-x-8 mt-6">
+      <% if @entry.team.team_member?(current_user) %>
+        <%= link_to "Edit Entry", edit_entry_path(current_user.team.entry), class: 'btn btn-primary' if @entry.team.team_member?(current_user) %>
+      <% end %>
+    </div>
+  </div>
 
-<h4>Built with:</h4>
-<div class="mt-6">
-  <%= @entry.built_with %>
-</div>
+  <div class="col-span-1">
+    <% if @entry.complete? %>
+      <span class="p-2 rounded-md bg-green-200">
+        Complete
+      </span>
+    <% else %>
+      <span class="p-2 rounded-md bg-yellow-200">
+        Incomplete
+      </span>
+    <% end %>
 
-<% if @entry.screenshots.attached? %>
-  <h4>Application Screenshots</h4>
-  <% @entry.screenshots.each do |screenshot| %>
-    <%= image_tag(screenshot.variant(resize_to_limit: [500, 500])) %>
-  <% end %>
-<% end %>
+    <div class="mt-6">
+      <%= link_to "View live application", @entry.website_url %>
+    </div>
 
-<div class="flex space-x-8 mt-6">
-  <% if @entry.team.team_member?(current_user) %>
-    <%= link_to "Edit Entry", edit_entry_path(current_user.team.entry), class: 'btn btn-primary' if @entry.team.team_member?(current_user) %>
-  <% end %>
+    <div class="mt-6">
+      <%= link_to "View on github", @entry.github_url %>
+    </div>
 
-  <% if user_signed_in? && current_user.voted_for_entry?(entry: @entry) %>
-    <%= button_to "Revoke vote", vote_path(entry: @entry), method: :delete, class: "btn bg-red-500 text-white hover:bg-red-400" %>
-  <% else %>
-    <%= button_to "Vote for this application", votes_path(entry: @entry), class: "btn bg-green-500 text-white hover:bg-green-400" %>
-  <% end %>
+    <hr/>
+
+    <% if user_signed_in? && current_user.voted_for_entry?(entry: @entry) %>
+      <%= button_to "Revoke vote", vote_path(entry: @entry), method: :delete, class: "btn bg-red-500 text-white hover:bg-red-400" %>
+    <% else %>
+      <%= button_to "Vote for this application", votes_path(entry: @entry), class: "btn bg-green-500 text-white hover:bg-green-400" %>
+    <% end %>
+  </div>
 </div>
