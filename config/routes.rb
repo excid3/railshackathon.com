@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :votes, only: [:create, :destroy]
   resources :entries
   devise_for :users, controllers: {
     registrations: "users/registrations",

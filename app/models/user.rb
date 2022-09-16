@@ -16,4 +16,8 @@ class User < ApplicationRecord
   def github
     services.github.first&.username
   end
+
+  def voted_for_entry?(entry:)
+    votes.where(entry_id: entry.id).any?
+  end
 end
