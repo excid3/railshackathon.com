@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def voted_for_entry?(entry:)
     votes.where(entry_id: entry.id).any?
   end
+
+  def vote_for_entry(entry)
+    votes.find_by(entry_id: entry.id)
+  end
 end

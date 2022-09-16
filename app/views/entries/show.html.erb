@@ -54,7 +54,7 @@
     <hr/>
 
     <% if user_signed_in? && current_user.voted_for_entry?(entry: @entry) %>
-      <%= button_to "Revoke vote", vote_path(entry: @entry), method: :delete, class: "btn bg-red-500 text-white hover:bg-red-400" %>
+      <%= button_to "Remove vote", vote_path(current_user.vote_for_entry(@entry)), method: :delete, class: "btn btn-white" %>
     <% else %>
       <%= button_to "Vote for this application", votes_path(entry: @entry), class: "btn bg-green-500 text-white hover:bg-green-400" %>
     <% end %>
