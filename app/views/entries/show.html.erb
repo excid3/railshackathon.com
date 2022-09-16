@@ -45,7 +45,7 @@
       <%= link_to "View Application", @entry.website_url, target: "_blank", class: "btn btn-white" %>
     </div>
 
-    <% if current_user.admin? || current_user.team.entry == @entry %>
+    <% if current_user&.admin? || current_user&.team&.entry == @entry %>
       <div class="mt-6">
         <%= link_to "View on GitHub", @entry.github_url, target: "_blank", class: "btn btn-white" %>
       </div>
