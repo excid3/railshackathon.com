@@ -15,6 +15,7 @@
         </div>
       </div>
       <div class="hidden sm:mt-10 sm:flex gap-2 lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+        <%= link_to "Teams", teams_path, class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
         <%= link_to "Login", new_user_session_path, class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
         <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
       </div>
@@ -65,6 +66,10 @@
               </dd>
             </div>
           </dl>
+
+          <div class="text-center mt-8">
+            <%= link_to "See participants →", teams_path, class: "text-blue-600 font-semibold" %>
+          </div>
 
         </div>
       </div>
