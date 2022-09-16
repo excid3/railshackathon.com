@@ -51,10 +51,14 @@
 
     <hr/>
 
+    <div class="mt-6">
+      <%= pluralize(@entry.votes.size, "vote") %>
+    </div>
+
     <% if user_signed_in? && current_user.voted_for_entry?(entry: @entry) %>
-      <%= button_to "Revoke vote", vote_path(entry: @entry), method: :delete, class: "btn bg-red-500 text-white hover:bg-red-400" %>
+      <%= button_to "Revoke vote", vote_path(entry: @entry), method: :delete, class: "mt-6 btn bg-red-500 text-white hover:bg-red-400" %>
     <% else %>
-      <%= button_to "Vote for this application", votes_path(entry: @entry), class: "btn bg-green-500 text-white hover:bg-green-400" %>
+      <%= button_to "Vote for this application", votes_path(entry: @entry), class: "mt-6 btn bg-green-500 text-white hover:bg-green-400" %>
     <% end %>
   </div>
 </div>
