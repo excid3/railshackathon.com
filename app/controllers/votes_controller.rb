@@ -7,7 +7,7 @@ class VotesController < ApplicationController
     if vote.save
       redirect_to @entry, notice: "Thank you for your vote."
     else
-      redirect_to @entry, notice: "Something went wrong."
+      redirect_to @entry, alert: vote.errors[:base].first
     end
   end
 
