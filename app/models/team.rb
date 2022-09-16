@@ -10,15 +10,30 @@ class Team < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :time_zone, presence: true
 
+  after_create_commit :find_or_create_repository
+  after_create_commit :add_all_collaborators
+  after_destroy_commit :delete_repository
+
   def repo_name
     Rails.env.development? ? "dev-team-#{id}" : "team-#{id}"
   end
 
+  def team_member?(user)
+    users.include?(user)
+  end
+
+  def full?
+    team_users.where.not(id: nil).size >= MAXIMUM_PER_TEAM
+  end
+
   def find_or_create_repository
-    client = Octokit::Client.new(access_token: Github.new.access_token)
-    client.create_repository(repo_name, organization: "rails-hackathon", private: true)
+    github_client.create_repository(repo_name, organization: "rails-hackathon", private: true)
     update(github_repo: "rails-hackathon/#{repo_name}")
   rescue
+  end
+
+  def delete_repository
+    github_client.delete_repository(github_repo)
   end
 
   def add_all_collaborators
@@ -28,15 +43,14 @@ class Team < ApplicationRecord
   end
 
   def add_github_collaborator(username)
-    client = Octokit::Client.new(access_token: Github.new.access_token)
-    client.add_collaborator(github_repo, username, permission: :maintain)
+    github_client.add_collaborator(github_repo, username, permission: :maintain)
   end
 
-  def team_member?(user)
-    users.include?(user)
+  def remove_github_collaborator(username)
+    github_client.add_collaborator(github_repo, username, permission: :maintain)
   end
 
-  def full?
-    team_users.where.not(id: nil).size >= MAXIMUM_PER_TEAM
+  def github_client
+    Octokit::Client.new(access_token: Github.new.access_token)
   end
 end
