@@ -43,11 +43,13 @@ class Team < ApplicationRecord
   end
 
   def add_github_collaborator(username)
+    find_or_create_repository unless github_repo?
     github_client.add_collaborator(github_repo, username, permission: :maintain)
   end
 
   def remove_github_collaborator(username)
-    github_client.add_collaborator(github_repo, username, permission: :maintain)
+    return unless github_repo?
+    github_client.remove_collaborator(github_repo, username, permission: :maintain)
   end
 
   def github_client

@@ -9,9 +9,9 @@ class TeamUser < ApplicationRecord
     team.add_github_collaborator(user.github)
   end
 
-  #after_destroy_commit do
-  #  team.remove_github_collaborator(user.github)
-  #end
+  after_destroy_commit do
+    team.remove_github_collaborator(user.github)
+  end
 
   def maximum_team_members
     if team.team_users.size > Team::MAXIMUM_PER_TEAM
