@@ -42,7 +42,7 @@
 
   <% if current_user.team.github_repo? %>
     <div class="mt-4 bg-gray-100 p-8 rounded-lg">
-      <h4 class="mt-0">Invite team members</h4>
+      <h4 class="mt-0">GitHub Repository</h4>
       <%= link_to "View GitHub Repository", "https://github.com/#{current_user.team.github_repo}", target: :_blank, class: "btn btn-white" %>
     </div>
   <% end %>
