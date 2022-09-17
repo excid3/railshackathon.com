@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!, only: %i[ new create edit update destroy ]
-  before_action :ensure_user_has_team, except: %i[ index ]
+  before_action :ensure_user_has_team, except: %i[ index show ]
   before_action :set_entry, only: %i[ edit update destroy ]
   before_action :ensure_only_one_entry, only: %i[ new create ]
 
