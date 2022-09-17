@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!, only: %i[ new create edit update destroy ]
+  before_action :ensure_user_has_team, except: %i[ index ]
   before_action :set_entry, only: %i[ edit update destroy ]
   before_action :ensure_only_one_entry, only: %i[ new create ]
 
@@ -58,6 +59,10 @@ class EntriesController < ApplicationController
 
   def entry_params
     params.require(:entry).permit(:title, :website_url, :description, :built_with, :complete, screenshots: [])
+  end
+
+  def ensure_user_has_team
+    redirect_to entries_url unless current_user.team
   end
 
   def set_entry
