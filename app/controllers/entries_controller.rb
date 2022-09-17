@@ -66,6 +66,6 @@ class EntriesController < ApplicationController
   end
 
   def ensure_only_one_entry
-    redirect_to entry_path(current_user.team.entry) if current_user.team.entry
+    redirect_to entry_path(current_user.team.entry) if current_user.team&.entry
   end
 end
