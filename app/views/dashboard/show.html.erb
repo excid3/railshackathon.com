@@ -20,6 +20,10 @@
       <p>We will create a GitHub repository for your team to submit your entry. You'll get access to this on September 17th.</p>
       <p class="bg-gray-100 p-4 rounded-lg text-gray-900 text-sm">Repos will be kept private and you're free to continue working on your application after the Hackathon ends. We just need a way to keep track of submissions and prevent cheaters.</p>
 
+      <% if current_user.team.github_repo? %>
+        <%= link_to "GitHub Repository", "https://github.com/#{current_user.team.github_repo}", target: :_blank, class: "btn btn-white" %>
+      <% end %>
+
     <% else %>
       <p>Organizing a team? <%= link_to "Create your team", new_team_path %> and invite your collaborators. Teams can be 1-4 people. </p>
       <p>Joining a team? Wait for your team leader to invite you.</p>
