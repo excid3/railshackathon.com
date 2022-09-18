@@ -24,15 +24,17 @@
           <% end %>
         </div>
 
-        <% if entry.complete? %>
-          <div class="p-2 rounded-md bg-green-200 text-green-900 text-xs font-medium">
-            Complete
-          </div>
-        <% else %>
-          <div class="p-2 rounded-md bg-yellow-200 text-yellow-900 text-xs font-medium">
-            Incomplete
-          </div>
-        <% end %>
+        <div>
+          <% if entry.complete? %>
+            <div class="p-2 rounded-md bg-green-200 text-green-900 text-xs font-medium">
+              Complete
+            </div>
+          <% else %>
+            <div class="p-2 rounded-md bg-yellow-200 text-yellow-900 text-xs font-medium">
+              Incomplete
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
   <% end %>
