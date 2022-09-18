@@ -9,7 +9,7 @@ class Vote < ApplicationRecord
 
   MAXIMUM = 5
 
-  after_commit :update_entry_total_point
+  # after_commit :update_entry_total_point
 
 
   def user_can_have_only_five_votes
