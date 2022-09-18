@@ -2,7 +2,6 @@ class Discord
   include Rails.application.routes.url_helpers
   include ActionDispatch::Routing::PolymorphicRoutes
   include ActionView::Helpers::NumberHelper
-  include JobsHelper
 
   attr_reader :entry
 
@@ -16,7 +15,7 @@ class Discord
 
   def embeds
     embed = {
-      title: "#{entry.title} by #{entry.team.name}",
+      title: "New Entry: #{entry.title} by #{entry.team.name}",
       description: entry.description.to_plain_text.tr("\n", " ").truncate(300),
       built_with: entry.built_with.to_plain_text.tr("\n", " ").truncate(300),
       url: entry.website_url,

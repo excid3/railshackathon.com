@@ -26,6 +26,7 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.save
+        Discord.new(@entry).post
         format.html { redirect_to entry_url(@entry), notice: "Entry was successfully created." }
         format.json { render :show, status: :created, location: @entry }
       else
