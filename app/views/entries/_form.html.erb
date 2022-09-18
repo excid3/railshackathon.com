@@ -36,6 +36,10 @@
     <%= form.file_field :screenshots, multiple: true, class: 'form-control' %>
   </div>
 
+  <% form.object.screenshots.each do |screenshot| %>
+    <%= form.hidden_field :screenshots, value: screenshot.signed_id, multiple: true %>
+  <% end %>
+
   <div class="mb-3 bg-gray-100 p-4 rounded-md">
     <p class="mt-0 mb-2 text-sm">Mark your entry complete to let the organizers know that it's ready to review.</p>
     <div class="flex items-center">
