@@ -1,0 +1,55 @@
+<h1>My Votes</h1>
+<p>Rank your top 5 entries. We'll use this to determine the community favorite submissions.</p>
+
+<% if @votes.any? %>
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div class="overflow-hidden bg-white shadow sm:rounded-md">
+    <ul role="list" class="list-none divide-y divide-gray-200">
+      <% @votes.each do |vote| %>
+        <li>
+          <div class="flex items-center px-4 py-4 sm:px-6">
+            <div class="mr-5 flex-shrink-0">
+              <% unless vote.first? %>
+                <%= button_to up_vote_move_path(vote), method: :patch do %>
+                  <!-- Heroicon name: mini/chevron-up -->
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                  </svg>
+                <% end %>
+              <% end %>
+
+              <% unless vote.last? %>
+                <%= button_to down_vote_move_path(vote), method: :patch do %>
+                  <!-- Heroicon name: mini/chevron-down -->
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
+              <div class="truncate">
+                <h3 class="my-0 truncate font-medium text-indigo-600"><%= link_to vote.entry.title.titleize, vote.entry %></h3>
+                <p class="text-gray-500 text-sm">By <%= link_to vote.entry.team.name.titleize, vote.entry.team %></p>
+              </div>
+              <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
+                <div class="flex -space-x-1 overflow-hidden">
+                  <% vote.entry.team.users.each do |user| %>
+                    <%= image_tag gravatar_url_for(user.email), class: "inline-block h-6 w-6 rounded-full ring-2 ring-white" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="ml-4">
+              <%= button_to "Remove", vote_path(vote), method: :delete, class: "btn btn-white", data: { turbo_confirm: "Are you sure?" } %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <p class="bg-gray-100 p-4 rounded"><%= link_to "Browse Entries", entries_path %> and vote on your favorites.</p>
+<% end %>

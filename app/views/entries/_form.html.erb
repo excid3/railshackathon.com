@@ -1,0 +1,68 @@
+<%= form_with(model: entry) do |form| %>
+  <% if entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+        <% entry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, "What did you call your application?", class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control', placeholder: "Our awesome application" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :website_url, "What's the URL to your deployed application?", class: 'form-label' %>
+    <%= form.url_field :website_url, class: 'form-control', placeholder: "https://example.herokuapp.com" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, "What did you build? What does it do? What's interesting about it?", class: 'form-label' %>
+    <%= form.rich_text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :built_with, "What Ruby gems and Javascript libraries did you use to build this application? How did you do it?", class: 'form-label' %>
+    <%= form.rich_text_area :built_with, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :screenshots, class: 'form-label' %>
+    <%= form.file_field :screenshots, multiple: true, class: 'form-control' %>
+  </div>
+
+  <% form.object.screenshots.each do |screenshot| %>
+    <%= form.hidden_field :screenshots, value: screenshot.signed_id, multiple: true %>
+  <% end %>
+
+  <div class="mb-3 bg-gray-100 p-4 rounded-md">
+    <p class="mt-0 mb-2 text-sm">Mark your entry complete to let the organizers know that it's ready to review.</p>
+    <div class="flex items-center">
+      <%= form.check_box :complete, class: 'form-label' %>
+      <%= form.label :complete, "Our entry is complete", class: 'form-label ml-2' %>
+    </div>
+  </div>
+
+  <div class="mb-3 flex justify-between">
+    <div>
+      <%= form.submit class: 'btn btn-primary' %>
+
+      <% if entry.persisted? %>
+        <%= link_to "Cancel", entry, class: "btn btn-link" %>
+      <% else %>
+        <%= link_to "Cancel", entries_path, class: "btn btn-link" %>
+      <% end %>
+    </div>
+
+    <% if entry.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', entry, method: :delete, class: "text-danger btn bg-red-500 text-white hover:bg-red-400 text-sm font-medium", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

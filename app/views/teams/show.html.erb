@@ -15,7 +15,7 @@
 </div>
 
 <h4>Team Members</h4>
-<ul class="list-none pl-0">
+<ul class="list-none pl-0 divide-y divide-gray-200">
   <% @team.users.each do |user| %>
     <li>
       <div class="flex gap-2 items-center">
@@ -39,4 +39,11 @@
       <%= button_tag "Copy to clipboard", class: "btn btn-primary", data: {controller: :clipboard, clipboard_text: team_invitation_url(@team, @team.to_sgid(purpose: "invite"))} %>
     </div>
   </div>
+
+  <% if current_user.team.github_repo? %>
+    <div class="mt-4 bg-gray-100 p-8 rounded-lg">
+      <h4 class="mt-0">GitHub Repository</h4>
+      <%= link_to "View GitHub Repository", "https://github.com/#{current_user.team.github_repo}", target: :_blank, class: "btn btn-white" %>
+    </div>
+  <% end %>
 <% end %>

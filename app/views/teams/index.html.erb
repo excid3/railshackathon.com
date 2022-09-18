@@ -1,5 +1,9 @@
 <div class="flex justify-between">
-  <h1><%= pluralize @teams.count, "Team" %></h1>
+  <div>
+    <h1 class="mb-0"><%= pluralize @teams.count, "Team" %></h1>
+    <p class="mt-2"><%= pluralize TeamUser.count, "developers" %> across <%= pluralize @teams.count, "team" %> are building Rails apps this hackathon.</p>
+  </div>
+
   <% if user_signed_in? %>
     <div>
       <% if current_user.team %>

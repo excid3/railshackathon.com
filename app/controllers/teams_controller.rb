@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_action :authenticate_user!, only: %i[ new create edit update destroy ]
   before_action :set_team, only: %i[ edit update destroy ]
   before_action :ensure_only_one_team, only: %i[ new create ]
 

@@ -15,6 +15,7 @@
         </div>
       </div>
       <div class="hidden sm:mt-10 sm:flex gap-2 lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+        <%= link_to "Teams", teams_path, class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
         <%= link_to "Login", new_user_session_path, class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
         <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
       </div>
@@ -52,6 +53,21 @@
             <% end %>
           </div>
           <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70 mt-10 w-full sm:hidden" %>
+
+          <dl class="mt-10 sm:mt-16 text-center">
+            <div>
+              <dd class="mt-0.5 text-2xl font-semibold tracking-tight text-blue-900">
+                <%= link_to "https://everytimezone.com/s/c64db7ce", target: :_blank do %>
+                  <span data-controller="countdown" data-countdown-date-value="2022-09-19T00:00:00.000-0000" data-countdown-prefix-value="👨‍💻 Hackathon ends in"></span>
+                <% end %>
+              </dd>
+            </div>
+          </dl>
+
+          <div class="text-center mt-8">
+            <%= link_to "See participants →", teams_path, class: "text-blue-600 font-semibold" %>
+          </div>
+
         </div>
       </div>
     </div>

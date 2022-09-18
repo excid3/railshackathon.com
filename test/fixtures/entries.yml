@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  website_url: MyString
+  github_url: MyString
+  team: one
+
+two:
+  title: MyString
+  website_url: MyString
+  github_url: MyString
+  team: two
+
+three:
+  title: MyString
+  website_url: MyString
+  github_url: MyString
+  team: three
+
+four:
+  title: MyString
+  website_url: MyString
+  github_url: MyString
+  team: four
+
+five:
+  title: MyString
+  website_url: MyString
+  github_url: MyString
+  team: five
+
+six:
+  title: MyString
+  website_url: MyString
+  github_url: MyString
+  team: six

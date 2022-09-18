@@ -1,6 +1,17 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :votes, only: [:index, :create, :destroy] do
+    resource :move, only: [], module: :votes do
+      collection do
+        patch "up"
+        patch "down"
+      end
+    end
+  end
+ 
+  resources :entries
+  resource :leaderboard, only: [:show]
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
@@ -30,6 +41,8 @@ Rails.application.routes.draw do
 
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
+  get '/rules', to: 'home#rules'
+  get '/resources', to: "home#resources"
 
   authenticated :user do
     root to: 'dashboard#show', as: :authenticated_root

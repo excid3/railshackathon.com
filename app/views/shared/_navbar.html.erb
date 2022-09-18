@@ -49,15 +49,18 @@
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <%= nav_link_to "Dashboard", root_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%= nav_link_to "Teams", teams_path, starts_with: true, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%#= nav_link_to "Entries", "#", active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Entries", entries_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "My Votes", votes_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" if current_user %>
+            <%= nav_link_to "Rules", rules_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Resources", resources_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Leaderboard", leaderboard_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%#= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
           </div>
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <%= nav_link_to "Announcements", announcements_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "hidden sm:inline-block px-3 py-2 rounded-md text-sm font-medium #{unread_announcements(current_user)}" %>
+        <%#= nav_link_to "Announcements", announcements_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "hidden sm:inline-block px-3 py-2 rounded-md text-sm font-medium #{unread_announcements(current_user)}" %>
 
         <% if user_signed_in? %>
           <!-- Profile dropdown -->
@@ -89,6 +92,9 @@
               <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "block w-full text-left px-4 py-2 text-sm text-gray-700" %>
             </div>
           </div>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "hidden sm:inline-block text-gray-300 hover:bg-gray-700 hover:text-white sm:inline-block px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "hidden sm:inline-block text-gray-300 hover:bg-gray-700 hover:text-white sm:inline-block px-3 py-2 rounded-md text-sm font-medium" %>
         <% end %>
       </div>
     </div>
@@ -99,8 +105,12 @@
     <div class="space-y-1 px-2 pt-2 pb-3">
       <%= nav_link_to "Dashboard", root_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
       <%= nav_link_to "Teams", teams_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
-      <%= nav_link_to "Announcements", announcements_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
-      <%#= nav_link_to "Entries", "#", active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Entries", entries_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "My Votes", votes_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Rules", rules_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Resources", resources_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Leaderboard", leaderboard_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%#= nav_link_to "Announcements", announcements_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
       <%#= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
 
       <% if user_signed_in? %>

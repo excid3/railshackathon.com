@@ -92,3 +92,5 @@ gem "octokit", "~> 5.4"
 gem "jwt", "~> 2.5"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "honeybadger", "~> 4.12"
+
+gem "acts_as_list", "~> 1.0"

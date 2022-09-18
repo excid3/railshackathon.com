@@ -5,8 +5,16 @@ class TeamUser < ApplicationRecord
   validate :maximum_team_members
   after_destroy :cleanup_team
 
+  after_create_commit do
+    team.add_github_collaborator(user.github)
+  end
+
+  after_destroy_commit do
+    team.remove_github_collaborator(user.github)
+  end
+
   def maximum_team_members
-    if team.team_users.where.not(id: nil).size >= Team::MAXIMUM_PER_TEAM
+    if team.team_users.size > Team::MAXIMUM_PER_TEAM
       errors.add(:base, "Sorry, this team is full")
     end
   end

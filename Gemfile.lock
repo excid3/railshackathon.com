@@ -83,6 +83,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts_as_list (1.0.4)
+      activerecord (>= 4.2)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     bcrypt (3.1.18)
@@ -360,6 +362,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  acts_as_list (~> 1.0)
   bootsnap
   capybara
   convertkit-ruby!

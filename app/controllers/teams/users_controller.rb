@@ -12,6 +12,12 @@ class Teams::UsersController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_team_user
-      @team_user = current_user.team.team_users.find_by(user_id: params[:id])
+      if current_user.team
+        @team_user = current_user.team.team_users.find_by(user_id: params[:id])
+      else
+        redirect_to root_path
+      end
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path
     end
 end
