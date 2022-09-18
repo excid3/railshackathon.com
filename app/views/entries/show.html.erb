@@ -19,7 +19,13 @@
     <% if @entry.screenshots.attached? %>
       <h4>Application Screenshots</h4>
       <% @entry.screenshots.each do |screenshot| %>
-        <%= image_tag(screenshot.variant(resize_to_limit: [500, 500])) %>
+        <% if screenshot.variable? %>
+          <%= link_to(screenshot, target: "_blank") do %>
+            <%= image_tag(screenshot.variant(resize_to_limit: [500, 500])) %>
+          <% end %>
+        <% else %>
+          <%= link_to(screenshot.filename, screenshot, target: "_blank") %>
+        <% end %>
       <% end %>
     <% end %>
 
