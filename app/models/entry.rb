@@ -1,4 +1,6 @@
 class Entry < ApplicationRecord
+  include Points
+
   belongs_to :team
   has_many :votes, dependent: :destroy
   has_many_attached :screenshots

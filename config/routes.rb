@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
  
   resources :entries
+  resource :leaderboard, only: [:show]
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"

@@ -69,7 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_213548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "complete"
-    t.integer "votes_count"
+    t.integer "total_points", default: 0
+    t.integer "votes_count", default: 0
     t.index ["team_id"], name: "index_entries_on_team_id"
   end
 
