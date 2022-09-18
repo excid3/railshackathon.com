@@ -16,9 +16,22 @@
     <%= link_to entry, class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100" do %>
       <h3 class="mt-0"><%= entry.title %></h3>
       <p>Submitted by: <%= entry.team.name %></p>
-      <div class="flex -space-x-1 overflow-hidden">
-        <% entry.team.users.each do |user| %>
-          <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
+
+      <div class="flex justify-between">
+        <div class="flex -space-x-1 overflow-hidden">
+          <% entry.team.users.each do |user| %>
+            <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
+          <% end %>
+        </div>
+
+        <% if entry.complete? %>
+          <div class="p-2 rounded-md bg-green-200 text-green-900 text-xs font-medium">
+            Complete
+          </div>
+        <% else %>
+          <div class="p-2 rounded-md bg-yellow-200 text-yellow-900 text-xs font-medium">
+            Incomplete
+          </div>
         <% end %>
       </div>
     <% end %>
