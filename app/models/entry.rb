@@ -8,6 +8,11 @@ class Entry < ApplicationRecord
   has_rich_text :built_with
 
   validates :title, presence: true, uniqueness: true
+  validates :website_url, presence: true
+  validates :description, presence: true
+  validates :built_with, presence: true
 
-  scope :order_by_total_points, -> { order(total_points: :desc) }
+  after_initialize do
+    self.github_url ||= "https://github.com/rails-hackathon/#{team.repo_name}"
+  end
 end

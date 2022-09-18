@@ -1,9 +1,10 @@
 class Vote < ApplicationRecord
   belongs_to :user
-  belongs_to :entry
+  belongs_to :entry, counter_cache: true
 
   acts_as_list scope: :user
 
+  validates :entry_id, uniqueness: {scope: :user_id}
   validate :user_can_have_only_five_votes
 
   MAXIMUM = 5

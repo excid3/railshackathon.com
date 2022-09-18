@@ -1,6 +1,8 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!, only: %i[ new create edit update destroy ]
+  before_action :ensure_user_has_team, except: %i[ index show ]
   before_action :set_entry, only: %i[ edit update destroy ]
+  before_action :ensure_only_one_entry, only: %i[ new create ]
 
   def index
     @entries = Entry.all
@@ -13,7 +15,7 @@ class EntriesController < ApplicationController
   end
 
   def new
-    @entry = Entry.new
+    @entry = current_user.team.build_entry
   end
 
   def edit
@@ -56,11 +58,19 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:title, :website_url, :github_url, :description, :built_with, :complete, screenshots: [])
+    params.require(:entry).permit(:title, :website_url, :description, :built_with, :complete, screenshots: [])
+  end
+
+  def ensure_user_has_team
+    redirect_to entries_url unless current_user.team
   end
 
   def set_entry
     @entry = current_user.team.entry
     redirect_to entries_path, alert: "Please create an entry first." unless @entry
+  end
+
+  def ensure_only_one_entry
+    redirect_to entry_path(current_user.team.entry) if current_user.team&.entry
   end
 end

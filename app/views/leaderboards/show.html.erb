@@ -16,7 +16,7 @@
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Rank</th>
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Team</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Application</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Points</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Votes</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
@@ -35,7 +35,7 @@
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     <div class="text-gray-900"><%= link_to entry.title.titleize, entry %></div>
                   </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= pluralize(entry.total_points, "point") %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= pluralize(entry.votes_count, "vote") %></td>
                 </tr>
               <% end %>
             </tbody>
