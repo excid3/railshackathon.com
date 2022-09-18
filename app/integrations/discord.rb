@@ -18,7 +18,14 @@ class Discord
       title: "New Entry: #{entry.title} by #{entry.team.name}",
       description: entry.description.to_plain_text.tr("\n", " ").truncate(300),
       built_with: entry.built_with.to_plain_text.tr("\n", " ").truncate(300),
-      url: entry.website_url,
+      url: entry_url(entry),
+      fields: [
+          {
+            name: "Website URL",
+            value: entry.website_url,
+            inline: true
+          },
+      ]
       color: 5814783
     }
 
