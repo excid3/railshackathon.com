@@ -25,7 +25,7 @@ class Discord
             value: entry.website_url,
             inline: true
           },
-      ]
+      ],
       color: 5814783
     }
 
