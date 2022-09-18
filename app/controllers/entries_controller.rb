@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
   before_action :ensure_only_one_entry, only: %i[ new create ]
 
   def index
-    @entries = Entry.all
+    @entries = Entry.order(created_at: :desc)
   end
 
   def show
