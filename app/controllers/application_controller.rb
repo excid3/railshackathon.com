@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
       devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar])
     end
+
+    def hackathon_ended
+      redirect_to teams_path, notice: "The hackathon has ended. We'll see you next year!"
+    end
 end

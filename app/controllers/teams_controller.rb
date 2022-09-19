@@ -2,6 +2,7 @@ class TeamsController < ApplicationController
   before_action :authenticate_user!, only: %i[ new create edit update destroy ]
   before_action :set_team, only: %i[ edit update destroy ]
   before_action :ensure_only_one_team, only: %i[ new create ]
+  before_action :hackathon_ended, except: %i[ index show ]
 
   # GET /teams or /teams.json
   def index
