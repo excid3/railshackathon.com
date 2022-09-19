@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
     end
 
     def hackathon_ended
-      redirect_to teams_path, notice: "The hackathon has ended. We'll see you next year!"
+      redirect_to root_path, notice: "The hackathon has ended. We'll see you next year!"
     end
 end
