@@ -1,5 +1,5 @@
 class LeaderboardsController < ApplicationController
   def show
-    @entries = Entry.order(votes_count: :desc)
+    @entries = Entry.order(total_points: :desc)
   end
 end
