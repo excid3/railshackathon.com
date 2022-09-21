@@ -23,7 +23,7 @@
         <b><%= link_to_if user.github, user.name, "https://github.com/#{user.github}" %></b>
 
         <% if @team.team_member?(current_user) %>
-          <%= button_to "Remove", team_user_path(@team, user), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "text-sm font-medium" %>
+          <%#= button_to "Remove", team_user_path(@team, user), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "text-sm font-medium" %>
         <% end %>
       </div>
     </li>

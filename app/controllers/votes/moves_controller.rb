@@ -1,5 +1,6 @@
 class Votes::MovesController < ApplicationController
   before_action :set_vote
+  before_action :hackathon_ended
 
   def up
     @vote.move_higher

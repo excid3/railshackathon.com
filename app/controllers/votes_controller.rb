@@ -1,6 +1,7 @@
 class VotesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_entry, only: %i[ create ]
+  before_action :voting_ended, except: %i[ index ]
 
   def index
     @votes = current_user.votes.order(:position)
@@ -25,5 +26,9 @@ class VotesController < ApplicationController
     @entry = Entry.find(params[:entry])
   rescue ActiveRecord::RecordNotFound
     redirect_to entries_url
+  end
+
+  def voting_ended
+    redirect_to leaderboard_path, notice: "Voting has ended for this year's Rails Hackathon entries."
   end
 end

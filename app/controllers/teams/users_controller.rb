@@ -1,6 +1,7 @@
 class Teams::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team_user
+  before_action :hackathon_ended
 
   # DELETE /team_users/1 or /team_users/1.json
   def destroy

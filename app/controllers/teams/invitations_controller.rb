@@ -1,6 +1,7 @@
 class Teams::InvitationsController < ApplicationController
   before_action :set_team
   before_action :authenticate_user!, only: [:update]
+  before_action :hackathon_ended
 
   def show
   end
