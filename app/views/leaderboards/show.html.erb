@@ -37,7 +37,7 @@
                     <div class="text-gray-900"><%= link_to entry.title.titleize, entry %></div>
                   </td>
                   <!--
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%#= pluralize(entry.votes.size, "vote") %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= pluralize(entry.votes.size, "vote") %></td>
                   -->
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= pluralize(entry.total_points, "point") %></td>
                 </tr>
