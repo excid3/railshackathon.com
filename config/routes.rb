@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       end
     end
   end
- 
+
   resources :entries
   resource :leaderboard, only: [:show]
   devise_for :users, controllers: {
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get '/terms', to: 'home#terms'
   get '/rules', to: 'home#rules'
   get '/resources', to: "home#resources"
+  get '/winners', to: "home#winners"
 
   authenticated :user do
     root to: 'dashboard#show', as: :authenticated_root

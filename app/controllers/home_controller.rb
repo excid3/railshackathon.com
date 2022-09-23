@@ -15,4 +15,7 @@ class HomeController < ApplicationController
 
   def resources
   end
+
+  def winners
+  end
 end
