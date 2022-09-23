@@ -30,14 +30,16 @@
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                     <div class="flex items-center">
                       <div class="ml-4">
-                        <div class="font-medium text-gray-900"><%= entry.team.name.titleize %></div>
+                        <div class="font-medium text-gray-900"><%= link_to entry.team.name.titleize, entry.team %></div>
                       </div>
                     </div>
                   </td>
-                  <td>
-                    <% entry.team.users.each do |user| %>
-                      <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
-                    <% end %>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                    <div class="flex -space-x-1 overflow-hidden">
+                      <% entry.team.users.each do |user| %>
+                        <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
+                      <% end %>
+                    </div>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     <div class="text-gray-900"><%= link_to entry.title.titleize, entry %></div>
