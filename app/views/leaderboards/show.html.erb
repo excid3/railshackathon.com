@@ -15,6 +15,7 @@
               <tr>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Rank</th>
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Team</th>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"></th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Application</th>
                 <!--<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Votes</th>-->
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Points</th>
@@ -32,6 +33,11 @@
                         <div class="font-medium text-gray-900"><%= entry.team.name.titleize %></div>
                       </div>
                     </div>
+                  </td>
+                  <td>
+                    <% entry.team.users.each do |user| %>
+                      <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
+                    <% end %>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     <div class="text-gray-900"><%= link_to entry.title.titleize, entry %></div>
