@@ -25,9 +25,9 @@ module Users
 
     def handle_auth(kind)
       if service.present?
-        service.update(service_attrs)
+        service.update(Service.attributes_from_omniauth(auth))
       else
-        user.services.create(service_attrs)
+        user.services.create(Service.attributes_from_omniauth(auth))
       end
 
       if user_signed_in?
@@ -62,18 +62,6 @@ module Users
       else
         @user = create_user
       end
-    end
-
-    def service_attrs
-      expires_at = auth.credentials.expires_at.present? ? Time.at(auth.credentials.expires_at) : nil
-      {
-          provider: auth.provider,
-          uid: auth.uid,
-          expires_at: expires_at,
-          access_token: auth.credentials.token,
-          access_token_secret: auth.credentials.secret,
-          auth: auth.to_hash
-      }
     end
 
     def create_user
