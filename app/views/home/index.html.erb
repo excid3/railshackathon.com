@@ -25,48 +25,37 @@
   <main>
     <div class="relative pt-10 pb-20 sm:py-24">
       <div class="absolute inset-x-0 -top-24 -bottom-14 overflow-hidden bg-indigo-50">
-        <img alt="" src="/_next/static/media/background.6c3571e0.jpg" width="918" height="1495" decoding="async" data-nimg="future" class="absolute top-0 left-0 translate-y-[-10%] translate-x-[-55%] -scale-x-100 sm:left-1/2 sm:translate-y-[-6%] sm:translate-x-[-98%] lg:translate-x-[-106%] xl:translate-x-[-122%]"/>
+        <!-- <img alt="" src="/_next/static/media/background.6c3571e0.jpg" width="918" height="1495" decoding="async" data-nimg="future" class="absolute top-0 left-0 translate-y-[-10%] translate-x-[-55%] -scale-x-100 sm:left-1/2 sm:translate-y-[-6%] sm:translate-x-[-98%] lg:translate-x-[-106%] xl:translate-x-[-122%]"/> -->
         <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white"></div>
         <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white"></div>
       </div>
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-        <div class="mx-auto max-w-2xl lg:max-w-4xl lg:px-12">
+        <div class="mx-auto max-w-2xl lg:max-w-4xl lg:px-12 text-center">
           <h1 class="font-display text-5xl font-bold tracking-tighter text-blue-600 sm:text-7xl">
             <span class="sr-only">Rails Hackathon- </span>A remote hackathon for Rails developers.
           </h1>
           <div class="mt-6 space-y-6 font-display text-2xl tracking-tight text-blue-900">
             <p>48 hours to build your best Ruby on Rails application with your friends.</p>
-            <p>This year's theme is <%= link_to "Hotwire", "https://hotwire.dev", target: :_blank, class: "font-bold underline" %> powered Rails apps.</p>
-          </div>
+            <p>This year's theme is </p>
+            
+            <p><span class="text-black font-extrabold text-4xl">Supporting the Ruby on Rails Community</span></p>
+            
 
-          <div class="mt-8">
-            <%= link_to "https://hotwired.dev/", target: :_blank do %>
-              <svg class="mx-auto" width="290px" height="80px" viewBox="0 0 289.69 79.8" xmlns="http://www.w3.org/2000/svg">
-                <path class="letter" d="m31.3 18.73-2.98 17.14h-9.24l2.99-17.14h-13.79l-8.28 47.53h13.79l3.25-18.71h9.24l-3.26 18.71h13.82l8.28-47.53z"></path>
-                <path class="letter" d="m82.83 20.14a8.76 8.76 0 0 0 -3.77-1.57 28.88 28.88 0 0 0 -5.18-.42h-11.47a30.88 30.88 0 0 0 -5.28.42 12.38 12.38 0 0 0 -4.3 1.57 9.37 9.37 0 0 0 -3.11 3.12 14.72 14.72 0 0 0 -1.81 5.14l-4.86 27.78a13.63 13.63 0 0 0 0 5.29 5.9 5.9 0 0 0 1.9 3.26 8.21 8.21 0 0 0 3.7 1.65 27.81 27.81 0 0 0 5.32.46h11.42a30.28 30.28 0 0 0 5.47-.46 12.18 12.18 0 0 0 4.31-1.65 9.64 9.64 0 0 0 3.11-3.26 15.27 15.27 0 0 0 1.78-5.29l4.86-27.78a11.25 11.25 0 0 0 0-5.14 6 6 0 0 0 -2.09-3.12zm-16.35 34.47h-9.37l4.28-24.24h9.37z"></path>
-                <path class="letter" d="m88.01 30.78h10.72l-6.17 35.48h13.78l6.18-35.48h10.73l2.1-12.05h-35.24z"></path>
-                <path class="letter" d="m171.06 18.73-9.28 26.11-.03-26.11h-10.9l-9.03 26.04-.17-26.04h-13.85l2.61 47.53h12.36l9.27-24.92.71 24.92h11.96l19.21-47.53z"></path>
-                <path class="letter" d="m248.66 20.88a8.41 8.41 0 0 0 -3.72-1.68 25.41 25.41 0 0 0 -5.2-.47h-22.81l-8.29 47.53h13.79l2.82-16.26h1.9l5.26 16.26h15.11l-6.89-18.26h.37a16.35 16.35 0 0 0 2.88-1.21 8.38 8.38 0 0 0 2.36-1.85 10.24 10.24 0 0 0 1.7-2.68 16.21 16.21 0 0 0 1.07-3.56l1.59-9.24a12.89 12.89 0 0 0 0-5.28 6.18 6.18 0 0 0 -1.94-3.3zm-12.14 11.33-.88 5.16a5.62 5.62 0 0 1 -.34.93 2.14 2.14 0 0 1 -.56.7 2.76 2.76 0 0 1 -.82.42 3.28 3.28 0 0 1 -1 .15h-5.81l1.63-9.57h5.81a2.84 2.84 0 0 1 1 .15 1.64 1.64 0 0 1 .65.43 1.39 1.39 0 0 1 .32.68 2.79 2.79 0 0 1 0 .95z"></path>
-                <path class="letter" d="m287.75 29.83 1.94-11.1h-29.95l-8.28 47.53h30.49l1.93-11.1h-16.7l1.39-7.95h12.77l1.8-10.25h-12.77l1.22-7.13z"></path>
-                <path class="bolt" d="m211.75 23-11.57 2.69 10.09-25.69-30.2 38.92 14.41-2.84-13.59 26.54 7.86-1.77-7.95 18.95 24.97-26.97-9.21 2.13z"></path>
-              </svg>
-            <% end %>
-          </div>
           <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70 mt-10 w-full sm:hidden" %>
 
           <dl class="mt-10 sm:mt-16 text-center">
             <div>
               <dd class="mt-0.5 text-2xl font-semibold tracking-tight text-blue-900">
                 <%= link_to "https://everytimezone.com/s/c64db7ce", target: :_blank do %>
-                  <span data-controller="countdown" data-countdown-date-value="2022-09-19T00:00:00.000-0000" data-countdown-prefix-value="👨‍💻 Hackathon ends in"></span>
+                  <span data-controller="countdown" data-countdown-date-value="2023-07-28T19:00:00.000-0000" data-countdown-prefix-value="👨‍💻 Hackathon starts in"></span>
                 <% end %>
               </dd>
             </div>
           </dl>
 
-          <div class="text-center mt-8">
+          <!-- <div class="text-center mt-8">
             <%= link_to "See participants →", teams_path, class: "text-blue-600 font-semibold" %>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -150,9 +139,9 @@
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Join our Discord</h4>
               <p class="mt-1 tracking-tight text-blue-900">Use our Discord to find a team, plan your projects, and make friends.</p>
-              <div class="mt-4">
+              <!-- <div class="mt-4">
                 <%= link_to "Join our Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, class: "px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 hover:text-white" %>
-              </div>
+              </div> -->
             </li>
 
             <li>
@@ -160,9 +149,9 @@
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Register your team</h4>
               <p class="mt-1 tracking-tight text-blue-900">Teams can be 1-4 people. Sign up and create your team to register for the hackathon.</p>
 
-              <div class="mt-4">
+              <!-- <div class="mt-4">
                 <%= link_to "Register your team", new_user_registration_path, class: "px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 hover:text-white" %>
-              </div>
+              </div> -->
             </li>
 
             <li>
