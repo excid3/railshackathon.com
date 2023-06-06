@@ -13,6 +13,8 @@ class Team < ApplicationRecord
   after_create_commit :find_or_create_repository
   after_create_commit :add_all_collaborators
   after_destroy_commit :delete_repository
+  
+  attribute :year, default: Time.current.year
 
   def repo_name
     Rails.env.development? ? "dev-team-#{id}" : "team-#{id}"

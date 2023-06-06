@@ -15,4 +15,6 @@ class Entry < ApplicationRecord
   after_initialize do
     self.github_url ||= "https://github.com/rails-hackathon/#{team.repo_name}"
   end
+  
+  attribute :year, default: Time.current.year
 end
