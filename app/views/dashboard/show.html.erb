@@ -1,14 +1,12 @@
 <div class="alert mb-8 text-xl">
   <%= link_to "https://everytimezone.com/s/c64db7ce", target: :_blank do %>
-    <span data-controller="countdown" 
-          data-countdown-date-value="<%= @current_or_previous_event&.end_time&.iso8601 %>"                    data-countdown-prefix-value="👨‍💻 Hackathon ends in">
-    </span>
+  <span data-controller="countdown" data-countdown-date-value="<%= @current_or_previous_event&.end_time&.iso8601 %>" data-countdown-prefix-value="👨‍💻 Hackathon ends in"></span>
   <% end %>
 </div>
 <div class="sm:flex gap-4">
   <div>
     <% if @current_or_previous_event && @current_or_previous_event.active? %>
-    <h2>Create or join a team</h2>
+      <h2>Create or join a team</h2>
       <% if current_user&.team %>
         <p>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-green-500 inline-block">
@@ -23,14 +21,14 @@
 
         <% if current_user&.team&.github_repo? %>
           <%= link_to "GitHub Repository", "https://github.com/#{current_user&.team&.github_repo}", target: :_blank, class: "btn btn-white" %>
-          <% end %>
-    <% else %>
-      <p>Organizing a team? <%= link_to "Create your team", new_team_path %> and invite your collaborators. Teams can be 1-4 people. </p>
-      <p>Joining a team? Wait for your team leader to invite you.</p>
-    <% end %>
+        <% end %>
+      <% else %>
+        <p>Organizing a team? <%= link_to "Create your team", new_team_path %> and invite your collaborators. Teams can be 1-4 people. </p>
+        <p>Joining a team? Wait for your team leader to invite you.</p>
+      <% end %>
 
-    <hr />
-  <% end %>
+      <hr />
+    <% end %>
     <h2>What's next?</h2>
 
     <!-- <h4>Pair Program with Tuple</h4>

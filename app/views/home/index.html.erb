@@ -14,11 +14,10 @@
       </div>
       <div class="hidden sm:mt-10 sm:flex items-center gap-2 lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
         <%= link_to "Events", events_path, class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
-        
         <%= link_to "Teams", event_teams_path(@current_or_previous_event), class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
         <%= link_to "Login", new_user_session_path, class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
         <% if @current_or_previous_event.active? %>
-        <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
         <% end %>
       </div>
     </div>
@@ -58,11 +57,9 @@
               </dd>
             </div>
           </dl>
-
           <!-- <div class="text-center mt-8">
             <%= link_to "See participants →", teams_path, class: "text-blue-600 font-semibold" %>
           </div> -->
-
         </div>
       </div>
     </div>
@@ -76,7 +73,6 @@
       </div>
       <div class="relative mt-14 sm:mt-24">
         <div class="absolute inset-x-0 -top-40 -bottom-32 overflow-hidden bg-indigo-50">
-
           <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white"></div>
           <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white"></div>
         </div>
@@ -97,7 +93,7 @@
               </div>
               <div class="relative text-center flex-none pr-4 sm:w-auto sm:pr-0">
                 <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                 <time datetime="<%= event_html_attrs(@current_or_previous_event.end_time) %>"><%= @current_or_previous_event.end_time.strftime("%B %d") %></time>
+                  <time datetime="<%= event_html_attrs(@current_or_previous_event.end_time) %>"><%= @current_or_previous_event.end_time.strftime("%B %d") %></time>
                 </h3>
                 <p class="mt-1.5 text-base tracking-tight text-blue-900">Start wrapping up your project! Your app submission is due at the end of the 48 hours to qualify. (<%= ordinalize_event_datetime(@current_or_previous_event.end_time) %>)</p>
               </div>
@@ -125,10 +121,7 @@
           </div>
 
           <ol role="list" class="mt-10 space-y-8 bg-white/60 py-14 px-10 text-center shadow-xl shadow-blue-900/5 backdrop-blur max-w-3xl mx-auto">
-            <li>
-              <h3 class="text-4xl">How It works</h3>
-            </li>
-
+            <li><h3 class="text-4xl">How It works</h3></li>
             <li>
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Join our Discord</h4>
@@ -137,47 +130,39 @@
                 <%= link_to "Join our Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, class: "px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 hover:text-white" %>
               </div>
             </li>
-
             <li>
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Register your team</h4>
               <p class="mt-1 tracking-tight text-blue-900">Teams can be 1-4 people. Sign up and create your team to register for the hackathon.</p>
-
               <!-- <div class="mt-4">
                 <%= link_to "Register your team", new_user_registration_path, class: "px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 hover:text-white" %>
               </div> -->
             </li>
-
             <li>
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Plan your project</h4>
               <p class="mt-1 tracking-tight text-blue-900">You can't write any code ahead of time, but you can plan everything out.</p>
             </li>
-
             <li>
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Start Coding</h4>
               <p class="mt-1 tracking-tight text-blue-900">We will provide a GitHub repository for you to submit your entry. You'll be able to start coding on <%= ordinalize_event_datetime(@current_or_previous_event.start_time) %>.</p>
             </li>
-
             <li>
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Deploy</h4>
               <p class="mt-1 tracking-tight text-blue-900">Throughout the weekend, you'll want to deploy your application and test it in production. The production app will be used in judging.</p>
             </li>
-
             <li>
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Submit &amp; Deploy</h4>
               <p class="mt-1 tracking-tight text-blue-900">After 48 hours, you'll stop coding, deploy one last time, and submit your final code to the GitHub repo.</p>
             </li>
-
             <li>
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Judging</h4>
               <p class="mt-1 tracking-tight text-blue-900">Once everyone is done, we'll go review all the submissions, play around with the apps in production, and judge each entry.</p>
             </li>
-
             <li>
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Announcing Winners</h4>
@@ -190,56 +175,56 @@
     </section>
 
     <section id="sponsors" aria-label="Sponsors" class="pt-8 pb-20">
-          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 class="mx-auto max-w-2xl text-center font-display text-4xl font-medium tracking-tighter text-blue-900 sm:text-5xl">Thanks to our sponsors ❤️</h2>
-            <div class="mx-auto mt-20 grid max-w-max grid-cols-1 place-content-center gap-y-12 gap-x-32 sm:grid-cols-3 md:gap-x-16 lg:gap-x-32">
-              <div class="flex items-center justify-center">
-                <%= link_to image_tag("sponsors/gorails.svg", class: "h-8"), "https://gorails.com", target: :_blank %>
-              </div>
-              <div class="flex items-center justify-center">
-                <%= link_to image_tag("sponsors/jumpstart.svg", class: "h-10"), "https://jumpstartrails.com", target: :_blank %>
-              </div>
-              <div class="flex items-center justify-center">
-                <%= link_to image_tag("sponsors/hatchbox.svg", class: "h-10"), "https://hatchbox.io", target: :_blank %>
-              </div>
-              <!-- <div class="flex items-center justify-center">
-                <%= link_to image_tag("sponsors/tuple.svg", class: "h-16"), "https://tuple.app", target: :_blank %>
-              </div>
-              <div class="flex items-center justify-center">
-                <%= link_to image_tag("sponsors/honeybadger.svg", class: "h-10"), "https://www.honeybadger.io/?affiliate=vq7ujA", target: :_blank %>
-              </div>
-              <div class="flex items-center justify-center">
-                <%= link_to image_tag("sponsors/flipper.svg", class: "h-10"), "https://flippercloud.io", target: :_blank %>
-              </div> -->
-            </div>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="mx-auto max-w-2xl text-center font-display text-4xl font-medium tracking-tighter text-blue-900 sm:text-5xl">
+          Thanks to our sponsors ❤️
+        </h2>
+        <div class="mx-auto mt-20 grid max-w-max grid-cols-1 place-content-center gap-y-12 gap-x-32 sm:grid-cols-3 md:gap-x-16 lg:gap-x-32">
+          <div class="flex items-center justify-center">
+            <%= link_to image_tag("sponsors/gorails.svg", class: "h-8"), "https://gorails.com", target: :_blank %>
           </div>
-        </section>
+          <div class="flex items-center justify-center">
+            <%= link_to image_tag("sponsors/jumpstart.svg", class: "h-10"), "https://jumpstartrails.com", target: :_blank %>
+          </div>
+          <div class="flex items-center justify-center">
+            <%= link_to image_tag("sponsors/hatchbox.svg", class: "h-10"), "https://hatchbox.io", target: :_blank %>
+          </div>
+          <!-- <div class="flex items-center justify-center">
+            <%= link_to image_tag("sponsors/tuple.svg", class: "h-16"), "https://tuple.app", target: :_blank %>
+          </div>
+          <div class="flex items-center justify-center">
+            <%= link_to image_tag("sponsors/honeybadger.svg", class: "h-10"), "https://www.honeybadger.io/?affiliate=vq7ujA", target: :_blank %>
+          </div>
+          <div class="flex items-center justify-center">
+            <%= link_to image_tag("sponsors/flipper.svg", class: "h-10"), "https://flippercloud.io", target: :_blank %>
+          </div> -->
+        </div>
+      </div>
+    </section>
 
     <section id="newsletter" aria-label="Newsletter">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="relative -mx-4 overflow-hidden bg-indigo-50 py-20 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:rounded-5xl md:px-16 xl:px-24 xl:py-36">
-          
-            <div>
-              <p class="font-display text-4xl font-medium tracking-tighter text-blue-900 sm:text-5xl">Stay up to date</p>
-              <p class="mt-4 text-lg tracking-tight text-blue-900">Get updates on all of our events and be the first to get notified when tickets go on sale.</p>
-            </div>
-            <%= form_with url: newsletter_url do |form| %>
-              <h3 class="text-lg font-semibold tracking-tight text-blue-900">Sign up to our newsletter
-                <span aria-hidden="true">↓</span>
-              </h3>
-              <div class="mt-5 flex rounded-3xl bg-white py-2.5 pr-2.5 shadow-xl shadow-blue-900/5 focus-within:ring-2 focus-within:ring-blue-900">
-                <%= form.email_field :email, placeholder: "Email address", required: true, style: "--tw-ring-shadow: 0 0 #000 !important;", class: "border-none -my-2.5 flex-auto bg-transparent pl-6 pr-2.5 text-base text-slate-900 placeholder:text-slate-400 focus:outline-none" %>
-                <button class="inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" type="submit">
-                  <span class="sr-only sm:not-sr-only">Sign up today</span>
-                  <span class="sm:hidden">
-                    <svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6">
-                      <path d="m14 7 5 5-5 5M19 12H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </span>
-                </button>
-              </div>
-            <% end %>
+        <div class="relative -mx-4 overflow-hidden bg-indigo-50 py-20 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:rounded-5xl md:px-16 xl:px-24 xl:py-36">      
+          <div>
+            <p class="font-display text-4xl font-medium tracking-tighter text-blue-900 sm:text-5xl">Stay up to date</p>
+            <p class="mt-4 text-lg tracking-tight text-blue-900">Get updates on all of our events and be the first to get notified when tickets go on sale.</p>
           </div>
+          <%= form_with url: newsletter_url do |form| %>
+            <h3 class="text-lg font-semibold tracking-tight text-blue-900">Sign up to our newsletter
+              <span aria-hidden="true">↓</span>
+            </h3>
+            <div class="mt-5 flex rounded-3xl bg-white py-2.5 pr-2.5 shadow-xl shadow-blue-900/5 focus-within:ring-2 focus-within:ring-blue-900">
+              <%= form.email_field :email, placeholder: "Email address", required: true, style: "--tw-ring-shadow: 0 0 #000 !important;", class: "border-none -my-2.5 flex-auto bg-transparent pl-6 pr-2.5 text-base text-slate-900 placeholder:text-slate-400 focus:outline-none" %>
+              <button class="inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" type="submit">
+                <span class="sr-only sm:not-sr-only">Sign up today</span>
+                <span class="sm:hidden">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6">
+                    <path d="m14 7 5 5-5 5M19 12H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          <% end %>
         </div>
       </div>
     </section>
