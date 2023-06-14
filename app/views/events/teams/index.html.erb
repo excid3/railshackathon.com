@@ -1,0 +1,29 @@
+<div class="flex justify-between">
+  <div>
+    <h1 class="mb-0"><%= pluralize @teams.count, "Team" %></h1>
+    <p class="mt-2"><%= pluralize TeamUser.count, "developers" %> across <%= pluralize @teams.count, "team" %> are building Rails apps this hackathon.</p>
+  </div>
+
+  <% if user_signed_in? %>
+    <div>
+      <% if current_user.team %>
+        <%= link_to "My Team", team_path(current_user.team), class: 'btn btn-primary' %>
+      <% elsif @event.active? %>
+        <%= link_to "Create a Team", new_team_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  <% @teams.each do |team| %>
+    <%= link_to team, class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100" do %>
+      <h3 class="mt-0"><%= team.name %></h3>
+      <div class="flex -space-x-1 overflow-hidden">
+        <% team.users.each do |user| %>
+          <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
