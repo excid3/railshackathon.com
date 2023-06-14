@@ -1,6 +1,7 @@
 class Team < ApplicationRecord
   MAXIMUM_PER_TEAM = 4
-
+  
+  belongs_to :event
   has_one :entry, dependent: :destroy
   has_many :team_users, dependent: :destroy
   has_many :users, through: :team_users
