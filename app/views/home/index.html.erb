@@ -9,15 +9,17 @@
       </div>
       <div class="order-first -mx-4 flex flex-auto basis-full overflow-x-auto whitespace-nowrap border-b border-blue-600/10 py-4 font-mono text-sm text-blue-600 sm:-mx-6 lg:order-none lg:mx-0 lg:basis-auto lg:border-0 lg:py-0">
         <div class="mx-auto flex items-center gap-4 px-4 text-2xl">
-          <p>
-            <time dateTime="2023-07-28">July 28</time> - <time dateTime="2023-07-30">30, 2023</time>
-          </p>
+            <%= event_date_info(@current_or_previous_event) %>
         </div>
       </div>
-      <div class="hidden sm:mt-10 sm:flex gap-2 lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
-        <%= link_to "Teams", teams_path, class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
+      <div class="hidden sm:mt-10 sm:flex items-center gap-2 lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+        <%= link_to "Events", events_path, class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
+        
+        <%= link_to "Teams", event_teams_path(@current_or_previous_event), class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
         <%= link_to "Login", new_user_session_path, class: "inline-flex justify-center rounded-2xl p-4 text-base font-semibold text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
-        <!-- <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %> -->
+        <% if @current_or_previous_event.active? %>
+        <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70" %>
+        <% end %>
       </div>
     </div>
   </header>
@@ -36,18 +38,22 @@
           </h1>
           <div class="mt-6 space-y-6 font-display text-2xl tracking-tight text-blue-900">
             <p>48 hours to build your best Ruby on Rails application with your friends.</p>
-            <p>This year's theme is </p>
-            
-            <p><span class="text-black font-extrabold text-4xl">Supporting the Ruby on Rails Community</span></p>
-            
+            <p>This event's theme <%= @current_or_previous_event.active? ? "is" : "was" %></p>
+            <p>
+              <span class="text-black font-extrabold text-4xl">
+                <%= @current_or_previous_event.theme  %>
+              </span>
+            </p>
 
-          <!-- <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70 mt-10 w-full sm:hidden" %> -->
+            <% if @current_or_previous_event.active? %>            
+              <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center                   rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500                    focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2                           focus-visible:outline-blue-500 active:text-white/70 mt-10 w-full sm:hidden" %>
+            <% end %>
 
           <dl class="mt-10 sm:mt-16 text-center">
             <div>
               <dd class="mt-0.5 text-2xl font-semibold tracking-tight text-blue-900">
-                <%= link_to "https://everytimezone.com/s/c64db7ce", target: :_blank do %>
-                  <span data-controller="countdown" data-countdown-date-value="2023-07-28T19:00:00.000-0000" data-countdown-prefix-value="👨‍💻 Hackathon starts in"></span>
+                <%= link_to "https://everytimezone.com/s/76dfecb4", target: :_blank do %>
+                  <span data-controller="countdown" data-countdown-date-value="<%= @current_or_previous_event.start_time.iso8601 %>" data-countdown-prefix-value="👨‍💻 Hackathon starts in"></span>
                 <% end %>
               </dd>
             </div>
@@ -79,48 +85,42 @@
             <div class="-mx-4 flex-col space-y-8 overflow-x-auto pl-4 pb-4 sm:mx-0 sm:pb-0 sm:pl-0" role="tablist" aria-orientation="vertical">
               <div class="relative text-center flex-none pr-4 sm:w-auto sm:pr-0">
                 <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                  <time dateTime="2023-07-28">
-                    July 28
-                  </time>
+                  <time datetime="<%= event_html_attrs(@current_or_previous_event.start_time) %>"><%= @current_or_previous_event.start_time.strftime("%B %d") %></time>
                 </h3>
-                <p class="mt-1.5 text-base tracking-tight text-blue-900">The first day of the hackathon is focused on getting started on your project. The Hackathon starts at 7 PM CST.</p>
+                <p class="mt-1.5 text-base tracking-tight text-blue-900">The first day of the hackathon is focused on getting started on your project. The Hackathon starts at <%= ordinalize_event_datetime(@current_or_previous_event.start_time).split("at").last %></p>
               </div>
               <div class="relative text-center flex-none pr-4 sm:w-auto sm:pr-0">
                 <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                  <time dateTime="2023-07-29">
-                    July 29
-                  </time>
+                  <time datetime="<%= event_html_attrs(@current_or_previous_event.start_time.tomorrow) %>"><%= @current_or_previous_event.start_time.tomorrow.strftime("%B %d") %></time>
                 </h3>
                 <p class="mt-1.5 text-base tracking-tight text-blue-900">Today is the day to get those plans in motion and get the basics done.</p>
               </div>
               <div class="relative text-center flex-none pr-4 sm:w-auto sm:pr-0">
                 <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                  <time dateTime="2023-07-30">
-                    July 30
-                  </time>
+                 <time datetime="<%= event_html_attrs(@current_or_previous_event.end_time) %>"><%= @current_or_previous_event.end_time.strftime("%B %d") %></time>
                 </h3>
-                <p class="mt-1.5 text-base tracking-tight text-blue-900">Start wrapping up your project! Your app submission is due at the end of the 48 hours to qualify. (July 30th at 7 PM CST)</p>
+                <p class="mt-1.5 text-base tracking-tight text-blue-900">Start wrapping up your project! Your app submission is due at the end of the 48 hours to qualify. (<%= ordinalize_event_datetime(@current_or_previous_event.end_time) %>)</p>
               </div>
             </div>
           </div>
           <div class="hidden lg:grid lg:grid-cols-3 lg:gap-x-8">
             <section>
               <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                <time dateTime="2023-07-28">July 28</time>
+                <time dateTime="<%= event_html_attrs(@current_or_previous_event.start_time) %>"><%= @current_or_previous_event.start_time.strftime("%B %d") %></time>
               </h3>
-              <p class="mt-1.5 text-base tracking-tight text-blue-900">The first day of the hackathon is focused on getting started on your project. The Hackathon starts at 7 PM CST.</p>
+              <p class="mt-1.5 text-base tracking-tight text-blue-900">The first day of the hackathon is focused on getting started on your project. The Hackathon starts at <%= ordinalize_event_datetime(@current_or_previous_event.start_time).split("at").last %></p>
             </section>
             <section>
               <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                <time dateTime="2023-07-29">July 29</time>
+                <time dateTime="<%= event_html_attrs(@current_or_previous_event.start_time.tomorrow) %>"><%= @current_or_previous_event.start_time.tomorrow.strftime("%B %d") %></time>
               </h3>
               <p class="mt-1.5 text-base tracking-tight text-blue-900">Today is the day to get those plans in motion and get the basics done.</p>
             </section>
             <section>
               <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                <time dateTime="2023-07-30">July 30</time>
+                <time dateTime="<%= event_html_attrs(@current_or_previous_event.end_time) %>"><%= @current_or_previous_event.end_time.strftime("%B %d") %></time>
               </h3>
-              <p class="mt-1.5 text-base tracking-tight text-blue-900">Start wrapping up your project! Your app submission is due at the end of the 48 hours to qualify. (July 30th at 7 PM CST)</p>
+              <p class="mt-1.5 text-base tracking-tight text-blue-900">Start wrapping up your project! Your app submission is due at the end of the 48 hours to qualify. (<%= ordinalize_event_datetime(@current_or_previous_event.end_time) %>)</p>
             </section>
           </div>
 
@@ -157,7 +157,7 @@
             <li>
               <div class="mx-auto mb-8 h-px w-48 bg-indigo-500/10"></div>
               <h4 class="text-lg font-semibold tracking-tight text-blue-900">Start Coding</h4>
-              <p class="mt-1 tracking-tight text-blue-900">We will provide a GitHub repository for you to submit your entry. You'll be able to start coding on July 28<sup>th</sup> at 7 PM CST.</p>
+              <p class="mt-1 tracking-tight text-blue-900">We will provide a GitHub repository for you to submit your entry. You'll be able to start coding on <%= ordinalize_event_datetime(@current_or_previous_event.start_time) %>.</p>
             </li>
 
             <li>
@@ -189,7 +189,7 @@
       </div>
     </section>
 
-    <section id="sponsors" aria-label="Sponsors" class="py-20 sm:py-32">
+    <section id="sponsors" aria-label="Sponsors" class="pt-8 pb-20">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 class="mx-auto max-w-2xl text-center font-display text-4xl font-medium tracking-tighter text-blue-900 sm:text-5xl">Thanks to our sponsors ❤️</h2>
             <div class="mx-auto mt-20 grid max-w-max grid-cols-1 place-content-center gap-y-12 gap-x-32 sm:grid-cols-3 md:gap-x-16 lg:gap-x-32">

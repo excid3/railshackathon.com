@@ -1,35 +1,36 @@
+
 <div class="alert mb-8 text-xl">
   <%= link_to "https://everytimezone.com/s/c64db7ce", target: :_blank do %>
-    <span data-controller="countdown" data-countdown-date-value="2022-09-19T00:00:00.000-0000" data-countdown-prefix-value="👨‍💻 Hackathon ends in"></span>
+    <span data-controller="countdown" data-countdown-date-value="<%= @event&.end_time&.iso8601 %>" data-countdown-prefix-value="👨‍💻 Hackathon ends in"></span>
   <% end %>
 </div>
-
 <div class="sm:flex gap-4">
   <div>
+    <% if @event && @event.active? %>
     <h2>Create or join a team</h2>
-    <% if current_user.team %>
+    <% if current_user&.team %>
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-green-500 inline-block">
           <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
         </svg>
-        All set! Your team is <b><%= link_to current_user.team.name, current_user.team %></b>.
+        All set! Your team is <b><%= link_to current_user&.team&.name, current_user&.team %></b>.
       </p>
 
       <h4>GitHub Repositories</h4>
       <p>We will create a GitHub repository for your team to submit your entry. You'll get access to this on September 17th.</p>
       <p class="bg-gray-100 p-4 rounded-lg text-gray-900 text-sm">Repos will be kept private and you're free to continue working on your application after the Hackathon ends. We just need a way to keep track of submissions and prevent cheaters.</p>
 
-      <% if current_user.team.github_repo? %>
-        <%= link_to "GitHub Repository", "https://github.com/#{current_user.team.github_repo}", target: :_blank, class: "btn btn-white" %>
+      <% if current_user&.team&.github_repo? %>
+        <%= link_to "GitHub Repository", "https://github.com/#{current_user&.team&.github_repo}", target: :_blank, class: "btn btn-white" %>
       <% end %>
 
     <% else %>
       <p>Organizing a team? <%= link_to "Create your team", new_team_path %> and invite your collaborators. Teams can be 1-4 people. </p>
       <p>Joining a team? Wait for your team leader to invite you.</p>
-    <% end%>
+    <% end %>
 
     <hr />
-
+    <% end %>
     <h2>What's next?</h2>
 
     <h4>Pair Program with Tuple</h4>

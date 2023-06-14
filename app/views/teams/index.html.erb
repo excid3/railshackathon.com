@@ -8,7 +8,7 @@
     <div>
       <% if current_user.team %>
         <%= link_to "My Team", team_path(current_user.team), class: 'btn btn-primary' %>
-      <% else %>
+      <% elsif @current_or_previous_event.active? %>
         <%= link_to "Create a Team", new_team_path, class: 'btn btn-primary' %>
       <% end %>
     </div>

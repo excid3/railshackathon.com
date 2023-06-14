@@ -12,7 +12,7 @@ class EntriesController < ApplicationController
   def show
     @entry = Entry.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to entries_path
+    redirect_to root_path, notice: "Invalid Entry."
   end
 
   def new
