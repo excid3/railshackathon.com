@@ -1,0 +1,13 @@
+<div class="flex justify-between mb-8">
+  <div>
+    <%= link_to "Create a Event", new_event_path, class: 'btn btn-primary' if current_user && current_user.admin? %>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  <% @events.each do |event| %>
+    <%= link_to event, class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100" do %>
+      <h3 class="mt-0"><%= event.theme %></h3>
+    <% end %>
+  <% end %>
+</div>
