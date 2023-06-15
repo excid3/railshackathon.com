@@ -11,7 +11,12 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <div class="mb-3">
+    <%= form.label :title, "Event Theme", class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control', placeholder: "Title" %>
+  </div>
+  
   <div class="mb-3">
     <%= form.label :theme, "Event Theme", class: 'form-label' %>
     <%= form.text_field :theme, class: 'form-control', placeholder: "Awesome Theme" %>
