@@ -15,6 +15,10 @@ class Event < ApplicationRecord
     published.where("end_time < ?", Time.current).order(end_time: :desc).take
   end
   
+  def to_param
+    [id, title.parameterize].join("-")
+  end
+  
   def active?
     end_time.after? Time.current
   end
