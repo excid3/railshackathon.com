@@ -7,6 +7,10 @@ class Event < ApplicationRecord
   
   scope :published, -> { where(published: true) }
 
+  def self.latest
+    current || previous
+  end
+  
   def self.current
     published.where("end_time > ?", Time.current).order(end_time: :asc).take
   end

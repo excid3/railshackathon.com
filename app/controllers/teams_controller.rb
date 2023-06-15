@@ -28,7 +28,7 @@ class TeamsController < ApplicationController
   # POST /teams or /teams.json
   def create
     @team = Team.new(team_params)
-    @team.event = Event.current
+    @team.event = latest_event
     @team.team_users.build(user: current_user)
 
     respond_to do |format|

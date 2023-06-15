@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_current_or_previous_event
   
   protected
 
@@ -15,12 +14,14 @@ class ApplicationController < ActionController::Base
   end
 
   def hackathon_ended
-    redirect_to root_path, notice: "The hackathon has ended. We'll see you next time!" unless @current_or_previous_event.active?
+    redirect_to root_path, notice: "The hackathon has ended. We'll see you next time!" unless latest_event.active?
   end
+   
+  helper_method :latest_event 
     
   private
   
-  def set_current_or_previous_event
-    @current_or_previous_event = Event.current || Event.previous
+  def latest_event
+    @latest_event ||= Event.latest
   end
 end

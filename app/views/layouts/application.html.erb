@@ -7,7 +7,7 @@
   <body class="flex flex-col h-full">
     <main class="grow">
       <%= render 'shared/banner' %>
-      <%= render 'shared/navbar', event: @current_or_previous_event %>
+      <%= render 'shared/navbar', event: latest_event %>
       <%= render 'shared/notices' %>
 
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
