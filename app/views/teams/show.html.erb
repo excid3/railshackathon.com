@@ -2,6 +2,10 @@
   <%= link_to "← Back to all Teams", event_teams_path(@team.event), class: "no-underline text-sm" %>
 </div>
 
+<% if @team.team_member?(current_user) %>
+  <%= link_to "Edit Team", edit_team_path(@team), class: "text-sm font-medium" %>
+<% end %>
+
 <h1 class="mb-2"><%= @team.name %></h1>
 <div class="text-xs">
   <svg class="inline-block h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
@@ -23,7 +27,7 @@
         <b><%= link_to_if user.github, user.name, "https://github.com/#{user.github}" %></b>
 
         <% if @team.team_member?(current_user) %>
-          <%#= button_to "Remove", team_user_path(@team, user), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "text-sm font-medium" %>
+          <%= button_to "Remove", team_user_path(@team, user), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "text-sm font-medium" %>
         <% end %>
       </div>
     </li>
