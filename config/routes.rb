@@ -1,6 +1,13 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+
+  resources :events do
+    resources :teams, module: :events, only: :index
+    resources :entries, module: :events, only: :index
+  end
+  
+  
   resources :votes, only: [:index, :create, :destroy] do
     resource :move, only: [], module: :votes do
       collection do
@@ -10,7 +17,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :entries
   resource :leaderboard, only: [:show]
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -31,8 +37,9 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :announcements, only: [:index]
 
+  resources :entries, except: :index
   resources :invitations
-  resources :teams do
+  resources :teams, except: :index do
     resources :users, module: :teams
     resources :invitations, module: :teams
   end
@@ -44,7 +51,9 @@ Rails.application.routes.draw do
   get '/rules', to: 'home#rules'
   get '/resources', to: "home#resources"
   get '/winners', to: "home#winners"
-
+  get '/teams', to: redirect("events/1-hotwire/teams")
+  get '/entries', to: redirect("events/1-hotwire/entries")
+  
   authenticated :user do
     root to: 'dashboard#show', as: :authenticated_root
   end

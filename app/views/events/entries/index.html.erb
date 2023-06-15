@@ -1,0 +1,41 @@
+<h1><%= @event.theme %></h1>
+<div class="flex justify-between">
+  <h2 class="text-3xl my-0"><%= pluralize @event_entries.size, "Entry" %></h2>
+  <% if user_signed_in? %>
+    <div>
+      <% if current_user.team&.entry %>
+        <%= link_to "My Entry", current_user.team.entry, class: 'btn btn-primary' %>
+      <% else %>
+        <%= link_to "Submit your Entry", new_entry_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  <% @event_entries.each do |entry| %>
+    <%= link_to entry, class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100 no-underline" do %>
+      <h3 class="mt-0"><%= entry.title %></h3>
+      <p>Submitted by: <%= entry.team.name %></p>
+
+      <div class="flex justify-between">
+        <div class="flex -space-x-1 overflow-hidden">
+          <% entry.team.users.each do |user| %>
+            <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
+          <% end %>
+        </div>
+
+        <div>
+          <% if entry.complete? %>
+            <div class="p-2 rounded-md bg-green-200 text-green-900 text-xs font-medium">
+              Complete
+            </div>
+          <% else %>
+            <div class="p-2 rounded-md bg-yellow-200 text-yellow-900 text-xs font-medium">
+              Incomplete
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

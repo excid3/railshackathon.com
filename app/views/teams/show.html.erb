@@ -1,5 +1,5 @@
 <div class="mb-8">
-  <%= link_to "← Back to all Teams", teams_path, class: "no-underline text-sm" %>
+  <%= link_to "← Back to all Teams", event_teams_path(@team.event), class: "no-underline text-sm" %>
 </div>
 
 <h1 class="mb-2"><%= @team.name %></h1>

@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to teams_path
+    redirect_to root_path, notice: "Invalid Team."
   end
 
   # GET /teams/new
@@ -28,6 +28,7 @@ class TeamsController < ApplicationController
   # POST /teams or /teams.json
   def create
     @team = Team.new(team_params)
+    @team.event = latest_event
     @team.team_users.build(user: current_user)
 
     respond_to do |format|
