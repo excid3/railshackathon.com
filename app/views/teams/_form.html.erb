@@ -1,8 +1,8 @@
+<div class="relative">
 <%= form_with(model: team) do |form| %>
   <% if team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
       <ul>
       <% team.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -27,12 +27,6 @@
   </div>
 
   <div class="mb-3">
-    <% if team.persisted? %>
-      <div class="float-end">
-        <%= link_to 'Destroy', team, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-      </div>
-    <% end %>
-
     <%= form.submit class: 'btn btn-primary' %>
 
     <% if team.persisted? %>
@@ -42,3 +36,9 @@
     <% end %>
   </div>
 <% end %>
+    <% if team.persisted? %>
+      <div class="inline-block absolute right-0 bottom-0">
+        <%= button_to 'Destroy', team, method: :delete, class: "text-danger btn bg-red-500 text-white hover:bg-red-400 text-sm font-medium", data: { turbo_confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+</div>

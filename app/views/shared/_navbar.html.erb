@@ -49,19 +49,19 @@
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <%= nav_link_to "Events", events_path, starts_with: true, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>          
-            <%= nav_link_to "Teams", event_teams_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= nav_link_to "Entries", event_entries_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= nav_link_to "My Votes", votes_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" if current_user %>
+            <%= nav_link_to "Events", events_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>          
+            <%#= nav_link_to "Teams", event_teams_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%#= nav_link_to "Entries", event_entries_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "My Votes", votes_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%= nav_link_to "Rules", rules_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%= nav_link_to "Resources", resources_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%= nav_link_to "Leaderboard", leaderboard_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= nav_link_to "Winners", winners_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%#= nav_link_to "Winners", winners_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>   
           </div>
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <%= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "hidden sm:inline-block px-3 py-2 rounded-md text-sm font-medium" %>
         <%= nav_link_to "Announcements", announcements_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "hidden sm:inline-block px-3 py-2 rounded-md text-sm font-medium #{unread_announcements(current_user)}" %>
 
         <% if user_signed_in? %>
