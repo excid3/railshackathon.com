@@ -14,6 +14,12 @@ class CreateEvents < ActiveRecord::Migration[7.0]
                   end_time: DateTime.new(2022, 9, 18, 19, 0, 00),
                   published: true
                 )
+                
+    Event.create!(theme: "Supporting the Ruby on Rails Community",
+                  start_time: DateTime.new(2023, 7, 28, 19, 0, 00),
+                  end_time: DateTime.new(2023, 7, 30, 19, 0, 00),
+                  published: true
+                )          
   end
   
   def down
