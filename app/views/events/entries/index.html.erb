@@ -1,5 +1,5 @@
 <div class="flex justify-between">
-  <h1><%= pluralize @entries.count, "Entry" %></h1>
+  <h1><%= pluralize @event_entries.size, "Entry" %></h1>
   <% if user_signed_in? %>
     <div>
       <% if current_user.team&.entry %>
@@ -12,7 +12,7 @@
 </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-  <% @entries.each do |entry| %>
+  <% @event_entries.each do |entry| %>
     <%= link_to entry, class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100 no-underline" do %>
       <h3 class="mt-0"><%= entry.title %></h3>
       <p>Submitted by: <%= entry.team.name %></p>
