@@ -51,7 +51,9 @@ Rails.application.routes.draw do
   get '/rules', to: 'home#rules'
   get '/resources', to: "home#resources"
   get '/winners', to: "home#winners"
-
+  get '/teams', to: redirect("events/1/teams")
+  get '/entries', to: redirect("events/1/entries")
+  
   authenticated :user do
     root to: 'dashboard#show', as: :authenticated_root
   end
