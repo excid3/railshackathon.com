@@ -16,8 +16,9 @@
         </p>
 
         <h4>GitHub Repositories</h4>
-        <p>We will create a GitHub repository for your team to submit your entry. You'll get access to this on September 17th.</p>
-        <p class="bg-gray-100 p-4 rounded-lg text-gray-900 text-sm">Repos will be kept private and you're free to continue working on your application after the Hackathon ends. We just need a way to keep track of submissions and prevent cheaters.</p>
+        <p>We will create a GitHub repository for your team to submit your entry.</p>
+        <p>You'll get access to this on <%= latest_event.start_time.strftime("%B #{latest_event.start_time.day.ordinalize}") %></p>
+        <p class="bg-gray-100 p-4 rounded-lg text-gray-900 text-sm">Repos will be kept private and you're free to continue working on your application after the Hackathon ends.</p>
 
         <% if current_user&.team&.github_repo? %>
           <%= link_to "GitHub Repository", "https://github.com/#{current_user&.team&.github_repo}", target: :_blank, class: "btn btn-white" %>
@@ -49,7 +50,9 @@
 
     <h4>Push updates and deploy regularly</h4>
     <p>We want to see your progress! Push your code to the GitHub repo and deploy your application often. Your live application will be used by other participants and as part of judging, so make sure it works!</p>
-    <p>Where should you deploy your app? Anywhere you like.<br/>We recommend <%= link_to "Render", "https://render.com", target: :_blank %>, <%= link_to "Fly.io", "https://fly.io", target: :_blank %>, <%= link_to "Heroku", "https://heroku.com", target: :_blank %>, or a VPS like <%= link_to "DigitalOcean", "https://m.do.co/c/87fcb9dab7a3", target: :_blank %>, <%= link_to "Vultr", "https://www.vultr.com/?ref=7302215", target: :_blank %>, or other hosting providers.</p>
+    <p>Where should you deploy your app? Anywhere you like.<br/>We recommend <%= link_to "Fly.io", "https://fly.io", target: :_blank %>, <%= link_to "Render", "https://render.com", target: :_blank %>, <%= link_to "Heroku", "https://heroku.com", target: :_blank %>, or a VPS like <%= link_to "DigitalOcean", "https://m.do.co/c/87fcb9dab7a3", target: :_blank %>, <%= link_to "Hetzner", "hhttps://www.hetzner.com/cloud", target: :_blank %>, <%= link_to "Vultr", "https://www.vultr.com/?ref=7302215", target: :_blank %>, or other hosting providers.</p>
+    
+<p>If you are using a VPS, you can manage your deploys with our own <%= link_to "Hatchbox", "https://app.hatchbox.io", target: :_blank %>.</p>
 
     <h4>Submit your entry on July 30th</h4>
     <p>Finish up your app, push it to GitHub, and make your final deploy. We will look at the GitHub repo and deployed app to judge your entry. Don't continue working on your app or you will be disqualified. We want this to be fair and fun for everyone!</p>
