@@ -16,10 +16,8 @@
         </p>
 
         <h4>GitHub Repositories</h4>
-        09-23-2023
-        latest_event.start_time.xx_xx_xxxx.dashed
         <p>We will create a GitHub repository for your team to submit your entry.</p>
-        <p>You'll get access to this on <%= latest_event.start_time.strftime("%B #{latest_event.start_time.day.ordinalize} %></p>
+        <p>You'll get access to this on <%= latest_event.start_time.strftime("%B #{latest_event.start_time.day.ordinalize}") %></p>
         <p class="bg-gray-100 p-4 rounded-lg text-gray-900 text-sm">Repos will be kept private and you're free to continue working on your application after the Hackathon ends.</p>
 
         <% if current_user&.team&.github_repo? %>
