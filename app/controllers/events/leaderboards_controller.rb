@@ -1,10 +1,8 @@
-class Events::EntriesController < ApplicationController
-  
-  def index
+class Events::LeaderboardsController < ApplicationController
+  def show
     @event = Event.find(params[:event_id])
-    @event_entries = @event.entries
+    @entries = @event.entries.joins(:team).order(total_points: :desc)
   rescue ActiveRecord::RecordNotFound
     redirect_to events_path, notice: "Invalid Event"
   end
-
 end

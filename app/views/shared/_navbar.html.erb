@@ -49,14 +49,9 @@
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <%= nav_link_to "Events", events_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>          
-            <%#= nav_link_to "Teams", event_teams_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%#= nav_link_to "Entries", event_entries_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "#{latest_event.title} Event", latest_event, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" if latest_event.active? %>          
+            <%= nav_link_to "Past Events", events_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>          
             <%= nav_link_to "My Votes", votes_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" if current_user %>
-            <%= nav_link_to "Rules", rules_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= nav_link_to "Resources", resources_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= nav_link_to "Leaderboard", leaderboard_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
-            <%#= nav_link_to "Winners", winners_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>   
           </div>
         </div>
       </div>
@@ -106,16 +101,17 @@
   <div data-toggle-target="toggleable" class="hidden" id="mobile-menu">
     <div class="space-y-1 px-2 pt-2 pb-3">
       <%= nav_link_to "Dashboard", root_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
-      <%= nav_link_to "Events", events_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "#{latest_event.title} Event", latest_event, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" if latest_event.active? %>
+      <%= nav_link_to "Past Events", events_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
       <%= nav_link_to "Teams", event_teams_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
       <%= nav_link_to "Entries", event_entries_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
       <%= nav_link_to "My Votes", votes_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" if current_user %>
-      <%= nav_link_to "Rules", rules_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
-      <%= nav_link_to "Resources", resources_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
-      <%= nav_link_to "Leaderboard", leaderboard_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
-      <%= nav_link_to "Winners", winners_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Rules", event_rules_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Resources", event_resources_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Leaderboard", event_leaderboard_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Winners", event_winners_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
       <%= nav_link_to "Announcements", announcements_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
-      <%= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+      <%= nav_link_to "Discord", "https://discord.gg/Up8SM8uz2K", target: :_blank, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "block px-3 py-2 rounded-md text-sm font-medium" %>
 
       <% if user_signed_in? %>
         <% if current_user.admin? && respond_to?(:madmin_root_path) %>
