@@ -4,11 +4,11 @@
   "dependencies": {
     "@gorails/ninja-keys": "^1.2.1",
     "@hotwired/stimulus": "^3.0.1",
-    "@hotwired/turbo-rails": "marcelolx/turbo-rails.git#@hotwired/turbo/c4e0aba",
+    "@hotwired/turbo-rails": "^7.2.0",
     "@rails/actioncable": "^7.0.0",
     "@rails/actiontext": "^7.0.3-1",
     "@rails/activestorage": "^7.0.0",
-    "@rails/request.js": "^0.0.6",
+    "@rails/request.js": "^0.0.8",
     "@rails/ujs": "^7.0.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.0",
@@ -17,15 +17,15 @@
     "autoprefixer": "^10.4.0",
     "chokidar": "^3.5.2",
     "clipboard": "^2.0.11",
-    "esbuild": "^0.15.0",
+    "esbuild": "^0.18.0",
     "esbuild-rails": "^1.0.3",
     "flatpickr": "^4.6.10",
-    "glob": "^8.0.1",
+    "gmarcelolx/turbo-rails.git#@hotwired/turbo/c4e0abalob": "^8.0.1",
     "js-cookie": "^3.0.1",
     "jstz": "^2.1.1",
     "local-time": "^2.1.0",
     "postcss": "^8.4.8",
-    "postcss-focus-visible": "^7.1.0",
+    "postcss-focus-visible": "^8.0.0",
     "postcss-import": "^15.0.0",
     "slim-select": "^1.27.0",
     "stimulus-flatpickr": "^3.0.0-0",
@@ -37,6 +37,6 @@
   },
   "scripts": {
     "build:css": "tailwindcss --postcss --minify -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
-    "build": "node esbuild.config.js"
+    "build": "node esbuild.config.mjs"
   }
 }

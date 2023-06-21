@@ -13,7 +13,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma", "~> 6.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -77,18 +77,17 @@ gem "jsbundling-rails"
 gem "madmin"
 gem "name_of_person", "~> 1.1"
 gem "noticed", "~> 1.4"
-gem "omniauth-facebook", "~> 8.0"
 gem "omniauth-github", "~> 2.0"
 gem "omniauth-twitter", "~> 1.4"
-gem "pretender", "~> 0.3.4"
+gem "pretender", "~> 0.4"
 gem "pundit", "~> 2.1"
-gem "sidekiq", "~> 6.2"
+gem "sidekiq", "~> 7.0"
 gem "sitemap_generator", "~> 6.1"
 gem "whenever", require: false
 gem "responders", github: "heartcombo/responders", branch: "main"
 
 gem "convertkit-ruby", require: "convertkit", github: "excid3/convertkit-ruby"
-gem "octokit", "~> 5.4"
+gem "octokit", "~> 6.0"
 gem "jwt", "~> 2.5"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "honeybadger", "~> 4.12"

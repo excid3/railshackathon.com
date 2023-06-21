@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-
+// Requires esbuild 0.17+
+//
 // Esbuild is configured with 3 modes:
 //
 // `yarn build` - Build JavaScript and exit
@@ -9,13 +10,16 @@
 // Minify is enabled when "RAILS_ENV=production"
 // Sourcemaps are enabled in non-production environments
 
-const esbuild = require('esbuild')
-const path = require('path')
-const rails = require('esbuild-rails')
+import * as esbuild from "esbuild"
+import path from "path"
+import rails from "esbuild-rails"
+import chokidar from "chokidar"
+import http from "http"
+import { setTimeout } from "timers/promises"
 
 const clients = []
 const entryPoints = [
-  "application.js",
+  "application.js"
 ]
 const watchDirectories = [
   "./app/javascript/**/*.js",
@@ -26,17 +30,21 @@ const config = {
   absWorkingDir: path.join(process.cwd(), "app/javascript"),
   bundle: true,
   entryPoints: entryPoints,
+  minify: process.env.RAILS_ENV == "production",
   outdir: path.join(process.cwd(), "app/assets/builds"),
   plugins: [rails()],
   sourcemap: process.env.RAILS_ENV != "production"
 }
 
 async function buildAndReload() {
-  const chokidar = require("chokidar")
-  const http = require("http")
-
   // Foreman & Overmind assign a separate PORT for each process
   const port = parseInt(process.env.PORT)
+  const context = await esbuild.context({
+    ...config,
+    banner: {
+      js: ` (() => new EventSource("http://localhost:${port}").onmessage = () => location.reload())();`,
+    }
+  })
 
   // Reload uses an HTTP server as an even stream to reload the browser
   http
@@ -52,42 +60,26 @@ async function buildAndReload() {
     })
     .listen(port)
 
-  const initialize_es_build = async () => {
-    return await esbuild.build({
-      ...config,
-      incremental: true,
-      banner: {
-        js: ` (() => new EventSource("http://localhost:${port}").onmessage = () => location.reload())();`,
-      },
-    })
-  }
-
-  let result = await initialize_es_build()
+  await context.rebuild()
   console.log("[reload] initial build succeeded")
 
-  let start = false
+  let ready = false
   chokidar
     .watch(watchDirectories)
     .on("ready", () => {
       console.log("[reload] ready")
-      start = true
+      ready = true
     })
     .on("all", async (event, path) => {
-      if (start === false) {
-        return
-      }
+      if (ready === false)  return
+
       if (path.includes("javascript")) {
         try {
-          if (!result) {
-            console.log("[reload] reinitializing...")
-            result = await initialize_es_build()
-          }
-          await result.rebuild()
+          await setTimeout(20)
+          await context.rebuild()
           console.log("[reload] build succeeded")
         } catch (error) {
           console.error("[reload] build failed", error)
-          // clear the rebuilder so we can force it to reinitialize next time a file is changed
-          result = null
         }
       }
       clients.forEach((res) => res.write("data: update\n\n"))
@@ -97,25 +89,9 @@ async function buildAndReload() {
 
 if (process.argv.includes("--reload")) {
   buildAndReload()
-
 } else if (process.argv.includes("--watch")) {
-  // Watch uses esbuild's watch option
-  const watch = process.argv.includes("--watch") && {
-    onRebuild(error) {
-      if (error) console.error("[watch] build failed", error)
-      else console.log("[watch] build finished")
-    },
-  }
-
-  esbuild.build({
-    ...config,
-    watch: watch,
-  }).catch(() => process.exit(1))
-
+  let context = await esbuild.context({...config, logLevel: 'info'})
+  context.watch()
 } else {
-  // Standard esbuild
-  esbuild.build({
-    ...config,
-    minify: process.env.RAILS_ENV == "production",
-  }).catch(() => process.exit(1))
+  esbuild.build(config)
 }
