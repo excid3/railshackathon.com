@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :services, dependent: :destroy
   has_one :team_user, dependent: :destroy
-  has_one :team, through: :team_user
+  has_one :team, ->{ where(event: Event.latest) }, through: :team_user
 
   has_one_attached :avatar
   has_person_name
