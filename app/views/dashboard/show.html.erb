@@ -1,10 +1,8 @@
 <div class="alert mb-8 text-xl">
   <% if latest_event.future? %>
-    <%= link_to_if latest_event.start_time_link?, latest_event.start_time_link, target: :_blank do %>
-      <span data-controller="countdown" data-countdown-date-value="<%= latest_event&.start_time&.iso8601 %>" data-countdown-prefix-value="👨‍💻 Hackathon starts in"></span>
-    <% end %>
+    <%= link_to_if latest_event.start_time_link?, countdown(latest_event&.start_time&.iso8601, prefix: "👨‍💻 Hackathon starts in"), latest_event.start_time_link, target: :_blank %>
   <% elsif latest_event.running? %>
-    <span data-controller="countdown" data-countdown-date-value="<%= latest_event&.end_time&.iso8601 %>" data-countdown-prefix-value="👨‍💻 Hackathon ends in"></span>
+    <%= countdown latest_event&.end_time&.iso8601, prefix: "👨‍💻 Hackathon ends in" %>
   <% else %>
     <span>has ended.</span>
   <% end %>
