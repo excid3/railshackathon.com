@@ -4,6 +4,7 @@
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
         <div class="sm:ml-6 sm:block">
           <div class="flex space-x-4">
+            <%= nav_link_to "Overview", event_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%= nav_link_to "Teams", event_teams_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%= nav_link_to "Entries", event_entries_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%= nav_link_to "Rules", event_rules_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
