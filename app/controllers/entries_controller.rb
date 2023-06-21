@@ -54,7 +54,7 @@ class EntriesController < ApplicationController
   def destroy
     respond_to do |format|
       @entry.destroy
-      format.html { redirect_to entries_url, notice: "Entry was successfully destroyed." }
+      format.html { redirect_to event_entries_url(@entry.event), notice: "Entry was successfully destroyed." }
       format.json { head :no_content }
     end
   end
