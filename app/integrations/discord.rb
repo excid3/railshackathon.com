@@ -10,7 +10,8 @@ class Discord
   end
 
   def post
-    HTTP.post(Rails.application.credentials.dig(:discord, :new_entry_url), json: {embeds: [embeds]})
+    return if url.blank?
+    HTTP.post(url, json: {embeds: [embeds]})
   end
 
   def embeds
@@ -34,5 +35,9 @@ class Discord
 
   def default_url_options
     Rails.application.config.action_mailer.default_url_options
+  end
+
+  def url
+    Rails.application.credentials.dig(:discord, :new_entry_url)
   end
 end
