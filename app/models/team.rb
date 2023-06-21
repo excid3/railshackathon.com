@@ -15,6 +15,8 @@ class Team < ApplicationRecord
   after_create_commit :add_all_collaborators
   after_destroy_commit :delete_repository
 
+  broadcasts_to :event
+
   def repo_name
     Rails.env.development? ? "dev-team-#{id}" : "team-#{id}"
   end

@@ -16,15 +16,7 @@
   <% end %>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-  <% @event_teams.each do |team| %>
-    <%= link_to team, class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100" do %>
-      <h3 class="mt-0"><%= team.name %></h3>
-      <div class="flex -space-x-1 overflow-hidden">
-        <% team.users.each do |user| %>
-          <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
+<%= turbo_stream_from @event %>
+<div id="teams" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  <%= render partial: "teams/team", collection: @event_teams %>
 </div>
