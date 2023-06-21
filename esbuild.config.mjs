@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// Requires esbuild 0.17+
-//
 // Esbuild is configured with 3 modes:
 //
 // `yarn build` - Build JavaScript and exit
@@ -25,6 +23,7 @@ const watchDirectories = [
   "./app/javascript/**/*.js",
   "./app/views/**/*.html.erb",
   "./app/assets/builds/**/*.css", // Wait for cssbundling changes
+  "./config/locales/**/*.yml",
 ]
 const config = {
   absWorkingDir: path.join(process.cwd(), "app/javascript"),
