@@ -1,0 +1,18 @@
+<nav class="bg-white border-b-2 border-gray-200" data-controller="toggle">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
+        <div class="sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <%= nav_link_to "Teams", event_teams_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Entries", event_entries_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Rules", event_rules_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Resources", event_resources_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= nav_link_to "Leaderboard", event_leaderboard_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" unless event.active? %>
+            <%= nav_link_to "Winners", event_winners_path(event), active_class: "text-white bg-gray-900", inactive_class: "text-gray-700 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" unless event.active?  %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

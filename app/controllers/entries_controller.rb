@@ -11,6 +11,7 @@ class EntriesController < ApplicationController
 
   def show
     @entry = Entry.find(params[:id])
+    @event = @entry.event
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path, notice: "Invalid Entry."
   end

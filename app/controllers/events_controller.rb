@@ -42,10 +42,6 @@ class EventsController < ApplicationController
   
   private 
   
-  def check_for_admin
-    redirect_to events_path, notice: "You are not authorized to perform that action" unless current_user.admin?
-  end
-  
   def set_event
     @event = Event.find(params[:id])
   rescue ActiveRecord::RecordNotFound

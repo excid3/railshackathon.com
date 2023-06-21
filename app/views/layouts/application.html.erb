@@ -8,6 +8,7 @@
     <main class="grow">
       <%= render 'shared/banner' %>
       <%= render 'shared/navbar', event: latest_event %>
+      <%= render 'shared/event_sub_nav', event: @event unless current_page?(events_path)%>
       <%= render 'shared/notices' %>
 
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">

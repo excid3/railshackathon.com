@@ -12,6 +12,7 @@ class TeamsController < ApplicationController
   # GET /teams/1 or /teams/1.json
   def show
     @team = Team.find(params[:id])
+    @event = @team.event
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path, notice: "Invalid Team."
   end
