@@ -11,6 +11,7 @@
 <div class="sm:flex flex-row gap-12">
   <div class="max-w-prose">
     <h2>Create or join a team</h2>
+
     <% if current_user&.team %>
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-green-500 inline-block">
@@ -28,8 +29,12 @@
         <%= link_to "GitHub Repository", "https://github.com/#{current_user&.team&.github_repo}", target: :_blank, class: "btn btn-white" %>
       <% end %>
     <% else %>
-      <p>Organizing a team? <%= link_to "Create your team", new_team_path %> and invite your collaborators. Teams can be 1-4 people. </p>
-      <p>Joining a team? Wait for your team leader to invite you.</p>
+
+      <h4>Organizing a team?</h4>
+      <p><%= link_to "Create your team", new_team_path, class: "btn btn-small btn-primary" %> and invite your collaborators. Teams can be 1-4 people. </p>
+
+      <h4>Joining a team? </h4>
+      <p>Ask your team leader to invite you to the team.</p>
     <% end %>
 
     <hr />

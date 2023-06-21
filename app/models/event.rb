@@ -10,6 +10,10 @@ class Event < ApplicationRecord
   scope :past, -> { where("end_time < ?", Time.current) }
   scope :newest_first, -> { order(end_time: :desc) }
 
+  attribute :start_time, default: 1.month.from_now
+  attribute :end_time, default: 2.months.from_now
+  attribute :published, default: true
+
   def self.latest
     current || previous
   end
@@ -23,7 +27,7 @@ class Event < ApplicationRecord
   end
 
   def to_param
-    [id, title.parameterize].join("-")
+    persisted? ? [id, title.parameterize].join("-") : nil
   end
 
   def active?
