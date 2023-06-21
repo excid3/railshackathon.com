@@ -6,8 +6,11 @@
 
 <div class="grid grid-cols-1 sm:grid-cols-2 text-center md:grid-cols-3 gap-4">
   <% @events.each do |event| %>
-    <%= link_to event, class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100" do %>
-      <h3 class="mt-0"><%= event.theme %></h3>
+    <%= link_to event, class: "block bg-gray-50 p-8 mb-8 rounded-lg no-underline hover:bg-gray-100" do %>
+      <h3 class="mt-0 font-bold"><%= event.theme %></h3>
+      <div class="text-sm text-gray-700">
+        <%= event.start_time.to_date.to_s(:long) %> - <%= event.end_time.to_date.to_s(:long) %>
+      </div>
     <% end %>
   <% end %>
 </div>
