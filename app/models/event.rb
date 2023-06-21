@@ -29,4 +29,20 @@ class Event < ApplicationRecord
   def active?
     end_time.after? Time.current
   end
+
+  def future?
+    Time.current.before? start_time
+  end
+
+  def started?
+    Time.current.after? start_time
+  end
+
+  def ended?
+    Time.current.after? end_time
+  end
+
+  def running?
+    started? && !ended?
+  end
 end
