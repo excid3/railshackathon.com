@@ -13,6 +13,8 @@ class Entry < ApplicationRecord
   validates :description, presence: true
   validates :built_with, presence: true
 
+  broadcasts_to :event
+
   after_initialize do
     self.github_url ||= "https://github.com/rails-hackathon/#{team.repo_name}"
   end
