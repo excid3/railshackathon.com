@@ -21,6 +21,7 @@ class EntriesController < ApplicationController
   end
 
   def edit
+    redirect_to event_entries_url(@entry.event), notice: "You are not authorized to perfom that action" unless @entry.team.team_member?(current_user)
   end
 
   def create
