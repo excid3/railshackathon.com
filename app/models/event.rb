@@ -45,4 +45,12 @@ class Event < ApplicationRecord
   def running?
     started? && !ended?
   end
+
+  def start_date
+    start_time.to_date
+  end
+
+  def end_date
+    end_time.to_date
+  end
 end
