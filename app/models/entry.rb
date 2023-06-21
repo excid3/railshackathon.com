@@ -8,7 +8,7 @@ class Entry < ApplicationRecord
   has_rich_text :description
   has_rich_text :built_with
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true, uniqueness: {scope: :team_id}
   validates :website_url, presence: true
   validates :description, presence: true
   validates :built_with, presence: true

@@ -1,6 +1,6 @@
 class Team < ApplicationRecord
   MAXIMUM_PER_TEAM = 4
-  
+
   belongs_to :event
   has_one :entry, dependent: :destroy
   has_many :team_users, dependent: :destroy
@@ -8,7 +8,7 @@ class Team < ApplicationRecord
 
   has_rich_text :description
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: {scope: :event_id}
   validates :time_zone, presence: true
 
   after_create_commit :find_or_create_repository
