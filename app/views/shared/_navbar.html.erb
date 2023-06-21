@@ -49,8 +49,8 @@
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <%= nav_link_to "#{latest_event.title} Event", latest_event, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" if latest_event.active? %>          
-            <%= nav_link_to "Past Events", events_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>          
+            <%= nav_link_to "#{latest_event.title} Event", latest_event, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" if latest_event.active? %>
+            <%= nav_link_to "Past Events", events_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" %>
             <%= nav_link_to "My Votes", votes_path, active_class: "text-white bg-gray-900", inactive_class: "text-gray-300 hover:bg-gray-700 hover:text-white", class: "px-3 py-2 rounded-md text-sm font-medium" if current_user %>
           </div>
         </div>
