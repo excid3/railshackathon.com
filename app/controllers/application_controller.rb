@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
     
   private
   
+  def check_for_admin
+    redirect_to events_path, notice: "You are not authorized to perform that action" unless current_user.admin?
+  end
+
   def latest_event
     @latest_event ||= Event.latest
   end

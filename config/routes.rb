@@ -1,10 +1,16 @@
-require 'sidekiq/web'
+require "sidekiq/web"
 
 Rails.application.routes.draw do
 
   resources :events do
-    resources :teams, module: :events, only: :index
-    resources :entries, module: :events, only: :index
+    scope module: :events do
+      resources :teams, only: :index
+      resources :entries, only: :index
+      resource :rules, only: :show
+      resource :leaderboard, only: :show
+      resource :resources, only: :show
+      resource :winners, only: :show
+    end
   end
   
   
@@ -17,14 +23,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :leaderboard, only: [:show]
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
   authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web => "/sidekiq"
 
     namespace :madmin do
       resources :impersonates do
@@ -46,17 +51,19 @@ Rails.application.routes.draw do
 
   resource :newsletter
 
-  get '/privacy', to: 'home#privacy'
-  get '/terms', to: 'home#terms'
-  get '/rules', to: 'home#rules'
-  get '/resources', to: "home#resources"
-  get '/winners', to: "home#winners"
-  get '/teams', to: redirect("events/1-hotwire/teams")
-  get '/entries', to: redirect("events/1-hotwire/entries")
-  
+  get "/privacy", to: "home#privacy"
+  get "/terms", to: "home#terms"
+  get "/teams", to: redirect("events/1-hotwire/teams")
+  get "/entries", to: redirect("events/1-hotwire/entries")
+
+  get "/leaderboard", to: redirect("events/1-hotwire/leaderboard")
+  get "/rules", to: redirect("events/1-hotwire/rules")
+  get "/resources", to: redirect("events/1-hotwire/resources")
+  get "/winners", to: redirect("events/1-hotwire/winners")
+
   authenticated :user do
-    root to: 'dashboard#show', as: :authenticated_root
+    root to: "dashboard#show", as: :authenticated_root
   end
 
-  root to: 'home#index'
+  root to: "home#index"
 end
