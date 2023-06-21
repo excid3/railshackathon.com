@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_16_213548) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_154259) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,9 +69,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_213548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "complete"
+    t.integer "votes_count"
     t.integer "total_points", default: 0
-    t.integer "votes_count", default: 0
     t.index ["team_id"], name: "index_entries_on_team_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "theme"
+    t.string "title"
+    t.boolean "published", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -114,6 +124,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_213548) do
     t.string "github_repo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_id", null: false
+    t.index ["event_id"], name: "index_teams_on_event_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -148,6 +160,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_213548) do
   add_foreign_key "services", "users"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
+  add_foreign_key "teams", "events"
   add_foreign_key "votes", "entries"
   add_foreign_key "votes", "users"
 end
