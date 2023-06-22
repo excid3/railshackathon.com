@@ -6,7 +6,7 @@ module EventsHelper
   end
 
   def ordinalize_event_datetime(event_datetime)
-    event_datetime.strftime("%B #{event_datetime.day.ordinalize} at %l %p #{event_datetime.localtime.zone}")
+    event_datetime.strftime("%B #{event_datetime.day.ordinalize} at %l %p #{event_datetime.in_time_zone("Central Time (US & Canada)").zone}")
   end
 
   def event_start(event)
