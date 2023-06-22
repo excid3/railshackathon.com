@@ -24,6 +24,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
+    redirect_to event_teams_url(@team.event), notice: "You are not authorized to perfom that action" unless @team.team_member?(current_user)
   end
 
   # POST /teams or /teams.json
@@ -61,7 +62,7 @@ class TeamsController < ApplicationController
     @team.destroy
 
     respond_to do |format|
-      format.html { redirect_to teams_url, notice: "Team was successfully destroyed." }
+      format.html { redirect_to event_teams_url(@team.event), notice: "Team was successfully destroyed." }
       format.json { head :no_content }
     end
   end
