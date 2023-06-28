@@ -66,15 +66,16 @@ class EntriesController < ApplicationController
   end
 
   def ensure_user_has_team
-    redirect_to entries_url unless current_user.team
+    redirect_to root_url, notice: "Please create or join a team first!" unless current_user.team
   end
 
   def set_entry
     @entry = current_user.team.entry
-    redirect_to entries_path, alert: "Please create an entry first." unless @entry
+    @event = @entry&.event || current_user.team.event
+    redirect_to event_entries_url(@event), alert: "Please create an entry first" unless @entry
   end
 
   def ensure_only_one_entry
-    redirect_to entry_path(current_user.team.entry) if current_user.team&.entry
+    redirect_to entry_url(current_user.team.entry), notice: "Only one entry is allowed per team" if current_user.team&.entry
   end
 end
