@@ -46,10 +46,6 @@ class Event < ApplicationRecord
     end_time.past?
   end
 
-  def running?
-    started? && !ended?
-  end
-
   def start_date
     start_time.to_date
   end
