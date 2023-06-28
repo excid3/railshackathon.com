@@ -1,7 +1,7 @@
 <div class="alert mb-8 text-xl">
   <% if latest_event.future? %>
     <%= link_to_if latest_event.start_time_link?, countdown(latest_event&.start_time&.iso8601, prefix: "👨‍💻 Hackathon starts in"), latest_event.start_time_link, target: :_blank %>
-  <% elsif latest_event.running? %>
+  <% elsif latest_event.active? %>
     <%= countdown latest_event&.end_time&.iso8601, prefix: "👨‍💻 Hackathon ends in" %>
   <% else %>
     <span>has ended.</span>
