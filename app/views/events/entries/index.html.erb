@@ -1,5 +1,5 @@
 <h1><%= @event.theme %></h1>
-<div class="flex justify-between">
+<div class="flex justify-between mb-8">
   <h2 class="text-3xl my-0"><%= pluralize @event_entries.size, "Entry" %></h2>
   <% if user_signed_in? %>
     <div>
