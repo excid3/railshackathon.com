@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!, only: %i[ new create edit update destroy ]
   before_action :ensure_user_has_team, except: %i[ index show ]
-  before_action :set_entry, only: %i[ edit update destroy ]
+  before_action :set_entry, only: %i[ show edit update destroy ]
   before_action :ensure_only_one_entry, only: %i[ new create ]
   before_action :hackathon_ended, except: %i[ index show ]
 
@@ -10,10 +10,7 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = Entry.find(params[:id])
-    @event = @entry.event
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, notice: "Invalid Entry."
+
   end
 
   def new
@@ -70,11 +67,12 @@ class EntriesController < ApplicationController
   end
 
   def set_entry
-    @entry = current_user.team.entry
-    @event = @entry&.event || current_user.team.event
-    redirect_to event_entries_url(@event), alert: "Please create an entry first" unless @entry
+    @entry = Entry.find(params[:id])
+    @event = @entry.event
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_url, alert: "Entry not found"
   end
-
+  
   def ensure_only_one_entry
     redirect_to entry_url(current_user.team.entry), notice: "Only one entry is allowed per team" if current_user.team&.entry
   end
