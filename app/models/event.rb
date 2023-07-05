@@ -31,7 +31,7 @@ class Event < ApplicationRecord
   end
 
   def active?
-    started? && end_time.future?
+    end_time.future?
   end
 
   def future?
@@ -52,5 +52,9 @@ class Event < ApplicationRecord
 
   def end_date
     end_time.to_date
+  end
+
+  def running?
+    started? && !ended?
   end
 end
