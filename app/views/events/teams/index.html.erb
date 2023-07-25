@@ -1,9 +1,5 @@
-<h1><%= @event.theme %></h1>
 <div class="flex justify-between">
-  <div>
-    <h2 class="text-3xl my-0"><%= pluralize @event_teams.size, "Team" %></h2>
-    <p class="mt-2"><%= pluralize @total_developers, "developer" %> across <%= pluralize @event_teams.size, "team" %> are building Rails apps this hackathon.</p>
-  </div>
+  <h1 class="mb-0"><%= pluralize @event.users.count, "Participant" %> across <%= pluralize @event.teams.count, "Team" %></h1>
 
   <% if user_signed_in? %>
     <div>
@@ -17,6 +13,6 @@
 </div>
 
 <%= turbo_stream_from @event %>
-<div id="teams" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+<div id="teams" class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
   <%= render partial: "teams/team", collection: @event_teams %>
 </div>

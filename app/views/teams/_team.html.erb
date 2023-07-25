@@ -1,5 +1,11 @@
-<%= link_to team, id: dom_id(team), class: "block bg-gray-50 p-8 rounded-lg hover:bg-gray-100" do %>
-  <h3 class="mt-0"><%= team.name %></h3>
+<%= link_to team, id: dom_id(team), class: "block bg-gray-50 p-8 rounded-lg no-underline hover:bg-gray-100" do %>
+  <h4 class="mt-0"><%= team.name %></h4>
+  <div class="text-xs">
+    <svg class="inline-block h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd" />
+    </svg>
+    <%= team.time_zone %>
+  </div>
   <div class="flex -space-x-1 overflow-hidden">
     <% team.users.each do |user| %>
       <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white", data: {controller: "tooltip", tippy_content: user.name || "Participant"} %>
