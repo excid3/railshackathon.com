@@ -163,6 +163,7 @@ GEM
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
+    local_time (2.1.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -372,6 +373,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   jwt (~> 2.5)
+  local_time (~> 2.1)
   madmin
   name_of_person (~> 1.1)
   noticed (~> 1.4)

@@ -93,3 +93,5 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "honeybadger", "~> 4.12"
 
 gem "acts_as_list", "~> 1.0"
+
+gem "local_time", "~> 2.1"

@@ -1,17 +1,20 @@
-<%= link_to "Edit this event", edit_event_path(@event) if current_user && current_user.admin? %>
+<%= link_to "Edit this event", edit_event_path(@event), class: "btn btn-white btn-small" if current_user && current_user.admin? %>
 
-<div class="flex justify-center">
-  <div>
-    <h1 class="mb-8 text-center"><%= @event.theme %></h1>
-  </div>
+<h1 class="text-center"><%= @event.theme %></h1>
+<h4 class="mt-2 text-center"><%= local_time @event.start_time, format: "%B %e, %Y %l:%M%P %Z" %> - <%= local_time @event.end_time, format: "%B %e, %Y %l:%M%P %Z" %></h4>
+
+<div class="mt-8 flex justify-between items-center">
+  <h3 class="mt-0"><%= pluralize @event.users.size, "Participant" %> &amp; <%= pluralize @event.teams.size, "Team" %></h3>
+  <%= link_to "View All Teams →", event_teams_path(@event), class: "btn btn-white" %>
+</div>
+<div class="mt-4 grid grid-cols-6 gap-4 items-center">
+  <%= render @event.teams.limit(18) %>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 text-center gap-4">
-  <%= link_to event_teams_path(@event), class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100" do %>
-    <h3 class="mt-0">View Teams</h3>
-  <% end %>
-    
-  <%= link_to event_entries_path(@event), class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100" do %>
-    <h3 class="mt-0">View Entries</h3>
-  <% end %>
+<div class="mt-8 flex justify-between items-center">
+  <h3 class="mt-0"><%= pluralize @event.entries.size, "Entry" %></h3>
+  <%= link_to "View All Teams →", event_teams_path(@event), class: "btn btn-white" %>
+</div>
+<div class="mt-4 grid grid-cols-6 gap-4 items-center">
+  <%= render @event.teams.limit(18) %>
 </div>

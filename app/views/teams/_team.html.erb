@@ -1,8 +1,8 @@
-<%= link_to team, id: dom_id(team), class: "block bg-gray-50 p-8 mb-8 rounded-lg hover:bg-gray-100" do %>
+<%= link_to team, id: dom_id(team), class: "block bg-gray-50 p-8 rounded-lg hover:bg-gray-100" do %>
   <h3 class="mt-0"><%= team.name %></h3>
   <div class="flex -space-x-1 overflow-hidden">
     <% team.users.each do |user| %>
-      <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white" %>
+      <%= image_tag gravatar_url_for(user.email), class: "inline-block m-0 h-10 w-10 rounded-full ring-2 ring-white", data: {controller: "tooltip", tippy_content: user.name || "Participant"} %>
     <% end %>
   </div>
 <% end %>

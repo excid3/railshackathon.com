@@ -2,18 +2,24 @@
 
 one:
   name: MyString
+  time_zone: UTC
 
 two:
   name: MyString
+  time_zone: UTC
 
 three:
   name: MyString
+  time_zone: UTC
 
 four:
   name: MyString
+  time_zone: UTC
 
 five:
   name: MyString
+  time_zone: UTC
 
 six:
   name: MyString
+  time_zone: UTC

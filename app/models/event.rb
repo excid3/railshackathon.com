@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   has_many :teams, dependent: :destroy
   has_many :entries, through: :teams
+  has_many :users, through: :teams
 
   validates :start_time, :end_time, :title, :theme, presence: :true
   validates :start_time, comparison: { less_than: :end_time }
