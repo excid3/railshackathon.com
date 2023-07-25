@@ -22,14 +22,16 @@
       <%= form.text_field :theme, class: 'form-control', placeholder: "Building Rails Apps with Hotwire" %>
     </div>
 
-    <div class="mb-3">
-      <%= form.label :start_time, "Start time", class: 'form-label' %>
-      <%= form.datetime_field :start_time, class: 'form-control' %>
-    </div>
+    <div class="flex gap-8">
+      <div class="mb-3">
+        <%= form.label :start_time, "Start time in #{Time.zone.name}", class: 'form-label' %>
+        <%= form.datetime_field :start_time, class: 'form-control' %>
+      </div>
 
-    <div class="mb-3">
-      <%= form.label :end_time, "End time", class: 'form-label' %>
-      <%= form.datetime_field :end_time, class: 'form-control' %>
+      <div class="mb-3">
+        <%= form.label :end_time, "End time in #{Time.zone.name}", class: 'form-label' %>
+        <%= form.datetime_field :end_time, class: 'form-control' %>
+      </div>
     </div>
 
     <div class="mb-3 flex space-x-4">
