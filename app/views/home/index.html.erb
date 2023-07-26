@@ -80,19 +80,19 @@
             <div class="-mx-4 flex-col space-y-8 overflow-x-auto pl-4 pb-4 sm:mx-0 sm:pb-0 sm:pl-0" role="tablist" aria-orientation="vertical">
               <div class="relative text-center flex-none pr-4 sm:w-auto sm:pr-0">
                 <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                  <time datetime="<%= event_html_attrs(latest_event.start_time) %>"><%= latest_event.start_time.strftime("%B %d") %></time>
+                  <time datetime="<%= event_html_attrs(latest_event.start_time) %>"><%= event_time_formatter(latest_event.start_time) %></time>
                 </h3>
                 <p class="mt-1.5 text-base tracking-tight text-blue-900">The first day of the hackathon is focused on getting started on your project. The Hackathon starts at <%= ordinalize_event_datetime(latest_event.start_time).split("at").last %></p>
               </div>
               <div class="relative text-center flex-none pr-4 sm:w-auto sm:pr-0">
                 <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                  <time datetime="<%= event_html_attrs(latest_event.start_time.tomorrow) %>"><%= latest_event.start_time.tomorrow.strftime("%B %d") %></time>
+                  <time datetime="<%= event_html_attrs(latest_event.start_time.tomorrow) %>"><%= event_time_formatter(latest_event.start_time.tomorrow) %></time>
                 </h3>
                 <p class="mt-1.5 text-base tracking-tight text-blue-900">Today is the day to get those plans in motion and get the basics done.</p>
               </div>
               <div class="relative text-center flex-none pr-4 sm:w-auto sm:pr-0">
                 <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                  <time datetime="<%= event_html_attrs(latest_event.end_time) %>"><%= latest_event.end_time.strftime("%B %d") %></time>
+                  <time datetime="<%= event_html_attrs(latest_event.end_time) %>"><%= event_time_formatter(latest_event.end_time) %></time>
                 </h3>
                 <p class="mt-1.5 text-base tracking-tight text-blue-900">Start wrapping up your project! Your app submission is due at the end of the 48 hours to qualify. (<%= ordinalize_event_datetime(latest_event.end_time) %>)</p>
               </div>
@@ -101,19 +101,19 @@
           <div class="hidden lg:grid lg:grid-cols-3 lg:gap-x-8">
             <section>
               <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                <time dateTime="<%= event_html_attrs(latest_event.start_time) %>"><%= latest_event.start_time.strftime("%B %d") %></time>
+                <time dateTime="<%= event_html_attrs(latest_event.start_time) %>"><%= event_time_formatter(latest_event.start_time) %></time>
               </h3>
               <p class="mt-1.5 text-base tracking-tight text-blue-900">The first day of the hackathon is focused on getting started on your project. The Hackathon starts at <%= ordinalize_event_datetime(latest_event.start_time).split("at").last %></p>
             </section>
             <section>
               <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                <time dateTime="<%= event_html_attrs(latest_event.start_time.tomorrow) %>"><%= latest_event.start_time.tomorrow.strftime("%B %d") %></time>
+                <time dateTime="<%= event_html_attrs(latest_event.start_time.tomorrow) %>"><%= event_time_formatter(latest_event.start_time.tomorrow) %></time>
               </h3>
               <p class="mt-1.5 text-base tracking-tight text-blue-900">Today is the day to get those plans in motion and get the basics done.</p>
             </section>
             <section>
               <h3 class="text-2xl font-semibold tracking-tight text-blue-900">
-                <time dateTime="<%= event_html_attrs(latest_event.end_time) %>"><%= latest_event.end_time.strftime("%B %d") %></time>
+                <time dateTime="<%= event_html_attrs(latest_event.end_time) %>"><%= event_time_formatter(latest_event.end_time) %></time>
               </h3>
               <p class="mt-1.5 text-base tracking-tight text-blue-900">Start wrapping up your project! Your app submission is due at the end of the 48 hours to qualify. (<%= ordinalize_event_datetime(latest_event.end_time) %>)</p>
             </section>
