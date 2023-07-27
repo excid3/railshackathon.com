@@ -30,9 +30,28 @@ export default class extends Controller {
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     let count = [this.prefixValue]
-    if (days > 0) { count.push(`${days} days`) }
-    if (hours > 0) { count.push(`${hours} hours`) }
-    if (minutes > 0) { count.push(`${minutes} minutes`) }
+    if (days == 1) { 
+      count.push(`${days} day`)
+     } else if (days > 1) {
+       count.push(`${days} days`)
+     } else {
+       count.push('')
+     }
+     
+    if (hours == 1) { 
+      count.push(`${hours} hour`) 
+    } else if (hours > 1) {
+      count.push(`${hours} hours`)
+    } else {
+      count.push('')
+    }
+    
+    if (minutes == 1) { 
+      count.push(`${minutes} minute`) 
+    } else {
+      count.push(`${minutes} minutes`)
+    }
+    
     count.push(this.suffixValue)
 
     // If the count down is finished, write some text
