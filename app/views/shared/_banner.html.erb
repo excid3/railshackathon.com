@@ -6,17 +6,17 @@
         <!-- <span class="md:hidden">Check out the winners for 2022!</span>
         <span class="hidden md:inline">Check out the winners for the Rails Hackathon 2022!</span> -->
         <span class="block sm:ml-2 sm:inline-block">
-            <% if latest_event.future? %>
-              <%= link_to_if latest_event.start_time_link?, countdown(latest_event&.start_time&.iso8601, prefix: "👨‍💻 Hackathon starts in"), latest_event.start_time_link, target: :_blank %>
-            <% elsif latest_event.running? %>
-              <%= countdown latest_event&.end_time&.iso8601, prefix: "👨‍💻 Hackathon ends in" %>
-            <% else %>
-              <span>has ended.</span>
-            <% end %>
-          <!-- <%= link_to winners_path, class: "font-bold text-white underline" do %>
-            See Winners
-            <span aria-hidden="true"> &rarr;</span>
-          <% end %> -->
+          <% if latest_event.future? %>
+            <%= link_to_if latest_event.start_time_link?, countdown(latest_event&.start_time&.iso8601, prefix: "👨‍💻 Hackathon starts in"), latest_event.start_time_link, target: :_blank %>
+          <% elsif latest_event.running? %>
+            <%= countdown latest_event&.end_time&.iso8601, prefix: "👨‍💻 Hackathon ends in" %>
+          <% else %>
+            <span>has ended.</span>
+          <% end %>
+          <%#= link_to winners_path, class: "font-bold text-white underline" do %>
+            <!-- See Winners
+            <span aria-hidden="true"> &rarr;</span> -->
+          <%# end %>
         </span>
       </p>
     </div>
