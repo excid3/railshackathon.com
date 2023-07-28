@@ -7,14 +7,14 @@
   <h3 class="mt-0"><%= pluralize @event.users.size, "Participant" %> &amp; <%= pluralize @event.teams.size, "Team" %></h3>
   <%= link_to "View All Teams →", event_teams_path(@event), class: "btn btn-white" %>
 </div>
-<div class="mt-4 grid grid-cols-6 gap-4 items-center">
-  <%= render @event.teams.newest_first.limit(18) %>
+<div class="mt-4 grid grid-cols-4 gap-4 items-center">
+  <%= render @event.teams.newest_first.limit(16) %>
 </div>
 
 <div class="mt-8 flex justify-between items-center">
   <h3 class="mt-0"><%= pluralize @event.entries.size, "Entry" %></h3>
   <%= link_to "View All Entries →", event_entries_path(@event), class: "btn btn-white" %>
 </div>
-<div class="mt-4 grid grid-cols-6 gap-4 items-center">
-  <%= render @event.entries.newest_first.limit(18) %>
+<div class="mt-4 grid grid-cols-3 gap-4 items-center">
+  <%= render @event.entries.newest_first.limit(12) %>
 </div>
