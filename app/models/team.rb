@@ -5,8 +5,9 @@ class Team < ApplicationRecord
   has_one :entry, dependent: :destroy
   has_many :team_users, dependent: :destroy
   has_many :users, through: :team_users
-
   has_rich_text :description
+
+  scope :newest_first, -> {order(created_at: :desc)}
 
   validates :name, presence: true, uniqueness: {scope: :event_id}
   validates :time_zone, presence: true

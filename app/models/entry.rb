@@ -8,6 +8,8 @@ class Entry < ApplicationRecord
   has_rich_text :description
   has_rich_text :built_with
 
+  scope :newest_first, -> {order(created_at: :desc)}
+
   validates :title, presence: true, uniqueness: {scope: :team_id}
   validates :website_url, presence: true
   validates :description, presence: true

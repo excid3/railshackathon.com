@@ -8,7 +8,7 @@
   <%= link_to "View All Teams →", event_teams_path(@event), class: "btn btn-white" %>
 </div>
 <div class="mt-4 grid grid-cols-6 gap-4 items-center">
-  <%= render @event.teams.limit(18) %>
+  <%= render @event.teams.newest_first.limit(18) %>
 </div>
 
 <div class="mt-8 flex justify-between items-center">
@@ -16,5 +16,5 @@
   <%= link_to "View All Entries →", event_entries_path(@event), class: "btn btn-white" %>
 </div>
 <div class="mt-4 grid grid-cols-6 gap-4 items-center">
-  <%= render @event.entries.limit(18) %>
+  <%= render @event.entries.newest_first.limit(18) %>
 </div>
