@@ -38,7 +38,7 @@
       <li>Use Ruby on Rails</li>
     </ul>
 
-    <h4><%= latest_event.start_date.to_s(:long) %> - It begins!</h4>
+    <h4><%= ordinalize_event_datetime(latest_event.start_time) %> - It begins!</h4>
     <p>Start hacking! We'll give you access to a GitHub repo to push your code when the hackathon starts. Keep an eye out for a GitHub email invite!</p>
 
     <h4>Push updates and deploy regularly</h4>
@@ -47,7 +47,7 @@
 
     <p>If you are using a VPS, you can manage your deploys with our own <%= link_to "Hatchbox", "https://app.hatchbox.io", target: :_blank %>.</p>
 
-    <h4>Submit your entry on <%= latest_event.end_date.to_s(:long) %></h4>
+    <h4>Submit your entry on <%= ordinalize_event_datetime(latest_event.end_time) %></h4>
     <p>Finish up your app, push it to GitHub, and make your final deploy. We will look at the GitHub repo and deployed app to judge your entry. Don't continue working on your app or you will be disqualified. We want this to be fair and fun for everyone!</p>
   </div>
 
