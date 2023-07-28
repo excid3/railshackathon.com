@@ -5,14 +5,10 @@
     </div>
 
     <h1 class="mb-2"><%= @entry.title %></h1>
-    <p class="m-0"> Submitted by <%= link_to @entry.team&.name, @entry.team %></p>
-    
-
-    <h4 class="mt-12">Description:</h4>
     <div class="mt-4">
       <%= @entry.description %>
     </div>
-
+    <%= render @entry.team %>
     <h4>Built with:</h4>
     <div class="mt-6">
       <%= @entry.built_with %>
