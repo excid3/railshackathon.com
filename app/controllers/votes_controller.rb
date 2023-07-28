@@ -4,7 +4,7 @@ class VotesController < ApplicationController
   before_action :voting_ended, except: %i[ index ]
 
   def index
-    @votes = current_user.votes.order(:position)
+    @votes = current_user.votes.joins(:event).where(events: {id: latest_event.id}).order(:position)
   end
 
   def create
@@ -23,7 +23,7 @@ class VotesController < ApplicationController
   end
 
   def set_entry
-    @entry = Entry.find(params[:entry])
+    @entry = latest_event.entries.find(params[:entry])
   rescue ActiveRecord::RecordNotFound
     redirect_to entries_url
   end

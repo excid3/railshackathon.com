@@ -15,7 +15,7 @@ class Votes::MovesController < ApplicationController
   private
 
   def set_vote
-    @vote = Vote.find(params[:vote_id])
+    @vote = current_user.votes.find(params[:vote_id])
   rescue ActiveRecord::RecordNotFound
     redirect_to votes_url
   end

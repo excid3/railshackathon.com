@@ -1,6 +1,8 @@
 class Vote < ApplicationRecord
   belongs_to :user
   belongs_to :entry, counter_cache: true
+  has_one :team, through: :entry
+  has_one :event, through: :team
 
   acts_as_list scope: :user
 
