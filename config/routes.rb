@@ -10,15 +10,14 @@ Rails.application.routes.draw do
       resource :leaderboard, only: :show
       resource :resources, only: :show
       resource :winners, only: :show
-    end
-  end
-  
-  
-  resources :votes, only: [:index, :create, :destroy] do
-    resource :move, only: [], module: :votes do
-      collection do
-        patch "up"
-        patch "down"
+
+      resources :votes, only: [:index, :create, :destroy] do
+        resource :move, only: [], module: :votes do
+          collection do
+            patch "up"
+            patch "down"
+          end
+        end
       end
     end
   end
@@ -56,6 +55,7 @@ Rails.application.routes.draw do
   get "/teams", to: redirect("events/1-hotwire/teams")
   get "/entries", to: redirect("events/1-hotwire/entries")
 
+  get "/votes", to: redirect("events/1-hotwire/votes")
   get "/leaderboard", to: redirect("events/1-hotwire/leaderboard")
   get "/rules", to: redirect("events/1-hotwire/rules")
   get "/resources", to: redirect("events/1-hotwire/resources")

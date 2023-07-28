@@ -51,5 +51,5 @@
     </ul>
   </div>
 <% else %>
-  <p class="bg-gray-100 p-4 rounded"><%= link_to "Browse Entries", entries_path %> and vote on your favorites.</p>
+  <p class="bg-gray-100 p-4 rounded"><%= link_to "Browse Entries", event_entries_path(@event) %> and vote on your favorites.</p>
 <% end %>
