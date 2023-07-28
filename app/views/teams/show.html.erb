@@ -38,7 +38,7 @@
     <p>Share this link with your friends so they can join your team.</p>
 
     <div class="truncate overflow-hidden">
-      <%= button_tag "Copy to clipboard", class: "btn btn-primary", data: {controller: :clipboard, clipboard_text: team_invitation_url(@team, @team.to_sgid(purpose: "invite"))} %>
+      <%= button_tag "Copy to clipboard", class: "btn btn-primary", data: {controller: :clipboard, clipboard_text: team_invitation_url(@team, @team.signed_id(purpose: "invite"))} %>
     </div>
   </div>
 
