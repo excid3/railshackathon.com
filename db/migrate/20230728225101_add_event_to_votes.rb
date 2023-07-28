@@ -1,6 +1,6 @@
 class AddEventToVotes < ActiveRecord::Migration[7.0]
   def change
-    add_reference :votes, :event, null: false, foreign_key: true
+    add_reference :votes, :event, foreign_key: true
 
     Vote.reset_column_information
 
