@@ -58,4 +58,12 @@ class Event < ApplicationRecord
   def running?
     started? && !ended?
   end
+
+  def voting_end_time
+    end_time + 2.days
+  end
+
+  def voting_allowed?
+    started? && voting_end_time.future?
+  end
 end

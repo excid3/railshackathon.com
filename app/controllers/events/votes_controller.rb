@@ -5,11 +5,11 @@ class Events::VotesController < ApplicationController
   before_action :voting_ended, except: %i[ index ]
 
   def index
-    @votes = current_user.votes.joins(:event).where(events: {id: @event.id}).order(:position)
+    @votes = current_user.votes.where(event: @event).order(:position)
   end
 
   def create
-    vote = current_user.votes.build(entry: @entry)
+    vote = current_user.votes.new(entry: @entry, event: @event)
     if vote.save
       redirect_to @entry, notice: "Thank you for your vote."
     else
@@ -36,6 +36,6 @@ class Events::VotesController < ApplicationController
   end
 
   def voting_ended
-    redirect_to event_leaderboard_path(@event), notice: "Voting has ended for this year's Rails Hackathon entries." if @event.ended?
+    redirect_to event_leaderboard_path(@event), notice: "Voting has ended for this year's Rails Hackathon entries." unless @event.voting_allowed?
   end
 end
