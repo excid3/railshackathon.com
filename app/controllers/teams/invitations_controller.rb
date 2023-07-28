@@ -18,7 +18,6 @@ class Teams::InvitationsController < ApplicationController
   private
 
   def set_team
-    @team = Team.find_signed(params[:id], purpose: "invite")
-    redirect_to root_path, alert: "Unable to locate team."
+    @team = GlobalID::Locator.locate_signed(params[:id], purpose: "invite")
   end
 end
