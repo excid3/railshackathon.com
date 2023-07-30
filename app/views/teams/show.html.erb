@@ -34,7 +34,7 @@
 
 <% if current_user.team&.entry %>
   <h4>Entry</h4>
-  <%= current_user.team.entry %>
+  <%= render current_user.team.entry %>
 <% end %>
 
 <% if user_signed_in? && current_user.team == @team %>
