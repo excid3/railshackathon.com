@@ -32,6 +32,11 @@
   <% end %>
 </ul>
 
+<% if current_user.team&.entry %>
+  <h4>Entry</h4>
+  <%= current_user.team.entry %>
+<% end %>
+
 <% if user_signed_in? && current_user.team == @team %>
   <div class="bg-gray-100 p-8 rounded-lg">
     <h4 class="mt-0">Invite team members</h4>
@@ -46,6 +51,14 @@
     <div class="mt-4 bg-gray-100 p-8 rounded-lg">
       <h4 class="mt-0">GitHub Repository</h4>
       <%= link_to "View GitHub Repository", "https://github.com/#{current_user.team.github_repo}", target: :_blank, class: "btn btn-white" %>
+    </div>
+  <% end %>
+
+  <% unless current_user.team&.entry %>
+    <div class="mt-4 bg-gray-100 p-8 rounded-lg">
+      <h4 class="mt-0">Your Team's Entry</h4>
+      <p>You haven't created your entry yet. Make sure to do so before the end of the hackathon!.</p>
+      <%= link_to "Submit your Entry", new_entry_path, class: 'btn btn-primary' %>
     </div>
   <% end %>
 <% end %>
