@@ -32,7 +32,7 @@
   <% end %>
 </ul>
 
-<% if current_user.team&.entry %>
+<% if @team.entry %>
   <h4>Entry</h4>
   <%= render current_user.team.entry %>
 <% end %>
