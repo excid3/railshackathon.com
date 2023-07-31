@@ -11,7 +11,7 @@
           <% elsif latest_event.running? %>
             <%= countdown latest_event&.end_time&.iso8601, prefix: "👨‍💻 Hackathon ends in" %>
           <% else %>
-            <span>has ended.</span>
+            <span>Hackathon has ended.</span>
           <% end %>
           <%#= link_to winners_path, class: "font-bold text-white underline" do %>
             <!-- See Winners

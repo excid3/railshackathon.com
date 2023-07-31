@@ -44,7 +44,7 @@
             </p>
 
             <% if latest_event.active? %>            
-              <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center                   rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500                    focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2                           focus-visible:outline-blue-500 active:text-white/70 mt-10 w-full sm:hidden" %>
+              <%= link_to "Sign up", new_user_registration_path, class: "inline-flex justify-center rounded-2xl bg-blue-600 p-4 text-base font-semibold text-white hover:bg-blue-500                    focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2                           focus-visible:outline-blue-500 active:text-white/70 mt-10 w-full sm:hidden" %>
             <% end %>
 
           <dl class="mt-10 sm:mt-16 text-center">
@@ -55,7 +55,7 @@
                 <% elsif latest_event.running? %>
                   <%= countdown latest_event&.end_time&.iso8601, prefix: "👨‍💻 Hackathon ends in" %>
                 <% else %>
-                  <span>has ended.</span>
+                  <span>Hackathon has ended.</span>
                 <% end %>
               </dd>
             </div>
