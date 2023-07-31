@@ -18,7 +18,7 @@ class EntriesController < ApplicationController
   end
 
   def edit
-    redirect_to event_entries_url(@entry.event), notice: "You are not authorized to perfom that action" unless @entry.team.team_member?(current_user)
+    redirect_to event_entries_url(@entry.event), notice: "You are not authorized to perfom that action" unless @entry.team.team_member?(current_user) || current_user.admin?
   end
 
   def create
@@ -63,7 +63,7 @@ class EntriesController < ApplicationController
   end
 
   def ensure_user_has_team
-    redirect_to root_url, notice: "Please create or join a team first!" unless current_user.team
+    redirect_to root_url, notice: "Please create or join a team first!" unless current_user.team || current_user.admin?
   end
 
   def set_entry
