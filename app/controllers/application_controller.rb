@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def hackathon_ended
-    redirect_to root_path, notice: "The hackathon event is not currently active. Check back soon! 😎" unless latest_event.active?
+    redirect_to root_path, notice: "The hackathon event is not currently active. Check back soon! 😎" unless latest_event.active? || current_user&.admin? 
   end
    
   helper_method :latest_event 

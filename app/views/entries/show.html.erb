@@ -28,7 +28,7 @@
     <% end %>
 
     <div class="flex space-x-8 mt-6">
-      <% if @entry.team.team_member?(current_user) %>
+      <% if @entry.team.team_member?(current_user) || current_user&.admin? %>
         <%= link_to "Edit Entry", edit_entry_path(@entry), class: 'btn btn-primary' %>
       <% end %>
     </div>
