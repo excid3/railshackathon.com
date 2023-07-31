@@ -12,7 +12,7 @@ module Points
   def update_entry_total_points
     points = self.votes.pluck(:position).map do |position|
       POINT_MAP[position.to_s.to_sym]
-    end.sum
+    end.compact.sum
 
     update(total_points: points)
   end
