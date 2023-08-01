@@ -9,6 +9,8 @@ class Entry < ApplicationRecord
   has_rich_text :built_with
 
   scope :newest_first, -> {order(created_at: :desc)}
+  scope :by_completed_status, -> { in_order_of(:complete, [true, false]) }
+  scope :by_title, -> { order(:title) }
 
   validates :title, presence: true, uniqueness: {scope: :team_id}
   validates :website_url, presence: true
