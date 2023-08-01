@@ -10,7 +10,7 @@ class Entry < ApplicationRecord
 
   scope :newest_first, -> {order(created_at: :desc)}
   scope :by_completed_status, -> { in_order_of(:complete, [true, false]) }
-  scope :by_title, -> { order(:title) }
+  scope :by_title, -> { order("LOWER(title)") }
 
   validates :title, presence: true, uniqueness: {scope: :team_id}
   validates :website_url, presence: true
