@@ -67,10 +67,12 @@
       <%= pluralize(@entry.votes.size, "vote") %>
     </div>
 
-    <% if user_signed_in? && current_user.voted_for_entry?(entry: @entry) %>
-      <%= button_to "Remove vote", event_vote_path(@event, current_user.vote_for_entry(@entry)), method: :delete, class: "mt-6 btn btn-white", data: { turbo_confirm: "Are you sure?" } %>
-    <% else %>
-      <%= button_to "Vote for this application", event_votes_path(@event, entry: @entry), class: "mt-6 btn bg-green-500 text-white hover:bg-green-400" %>
+    <% if @entry.event.voting_allowed? %>
+      <% if user_signed_in? && current_user.voted_for_entry?(entry: @entry) %>
+        <%= button_to "Remove vote", event_vote_path(@event, current_user.vote_for_entry(@entry)), method: :delete, class: "mt-6 btn btn-white", data: { turbo_confirm: "Are you sure?" } %>
+      <% else %>
+        <%= button_to "Vote for this application", event_votes_path(@event, entry: @entry), class: "mt-6 btn bg-green-500 text-white hover:bg-green-400" %>
+      <% end %>
     <% end %>
   </div>
 </div>
