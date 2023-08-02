@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
+ruby "~> 3.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3", ">= 7.0.3.1"
@@ -68,7 +68,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
 end
 gem "cssbundling-rails"
 gem "devise", "~> 4.8", ">= 4.8.0"
@@ -90,7 +89,7 @@ gem "convertkit-ruby", require: "convertkit", github: "excid3/convertkit-ruby"
 gem "octokit", "~> 6.0"
 gem "jwt", "~> 2.5"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
-gem "honeybadger", "~> 4.12"
+gem "honeybadger", "~> 5.2"
 
 gem "acts_as_list", "~> 1.0"
 
