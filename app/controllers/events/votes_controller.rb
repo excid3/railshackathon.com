@@ -22,6 +22,8 @@ class Events::VotesController < ApplicationController
     vote.destroy
     redirect_back fallback_location: entry_path(vote.entry), notice: "Your vote has been removed successfully."
   end
+  
+  private
 
   def set_event
     @event = Event.find(params[:event_id])
