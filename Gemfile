@@ -80,7 +80,7 @@ gem "omniauth-github", "~> 2.0"
 gem "omniauth-twitter", "~> 1.4"
 gem "pretender", "~> 0.4"
 gem "pundit", "~> 2.1"
-gem "sidekiq", "~> 7.0"
+gem "sidekiq", "~> 7.1"
 gem "sitemap_generator", "~> 6.1"
 gem "whenever", require: false
 gem "responders", github: "heartcombo/responders", branch: "main"
