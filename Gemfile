@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "~> 3.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.3", ">= 7.0.3.1"
+gem "rails", "~> 7.2.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -69,28 +69,26 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "acts_as_list", "~> 1.0"
+gem "convertkit-ruby", require: "convertkit", github: "excid3/convertkit-ruby"
 gem "cssbundling-rails"
 gem "devise", "~> 4.8", ">= 4.8.0"
 gem "friendly_id", "~> 5.4"
+gem "honeybadger", "~> 5.2"
 gem "jsbundling-rails"
+gem "jwt", "~> 2.5"
+gem "local_time", "~> 2.1"
 gem "madmin"
 gem "name_of_person", "~> 1.1"
 gem "noticed", "~> 1.4"
+gem "octokit", "~> 6.0"
 gem "omniauth-github", "~> 2.0"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "omniauth-twitter", "~> 1.4"
 gem "pretender", "~> 0.4"
 gem "pundit", "~> 2.1"
+gem "responders", github: "heartcombo/responders", branch: "main"
 gem "sidekiq", "~> 7.1"
 gem "sitemap_generator", "~> 6.1"
 gem "whenever", require: false
-gem "responders", github: "heartcombo/responders", branch: "main"
-
-gem "convertkit-ruby", require: "convertkit", github: "excid3/convertkit-ruby"
-gem "octokit", "~> 6.0"
-gem "jwt", "~> 2.5"
-gem "omniauth-rails_csrf_protection", "~> 1.0"
-gem "honeybadger", "~> 5.2"
-
-gem "acts_as_list", "~> 1.0"
-
-gem "local_time", "~> 2.1"

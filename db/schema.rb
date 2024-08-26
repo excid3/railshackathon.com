@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_28_225101) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_26_151844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,8 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_225101) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "complete"
-    t.integer "total_points", default: 0
     t.integer "votes_count", default: 0
+    t.integer "total_points", default: 0
     t.index ["team_id"], name: "index_entries_on_team_id"
   end
 
