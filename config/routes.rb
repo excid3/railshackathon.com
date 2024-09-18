@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   resources :invitations
   resources :teams, except: :index do
     resources :users, module: :teams
+    resource :repository_invite, only: [:create], module: :teams
     resources :invitations, module: :teams
   end
 
